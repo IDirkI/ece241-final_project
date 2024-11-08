@@ -1,0 +1,14 @@
+module pose_tracker(
+	// Inputs
+	keycode,
+	
+	// Outputs
+	posX,
+	posY,
+	posZ,
+	orA,
+	orB,
+	orC
+	);
+	
+endmodule

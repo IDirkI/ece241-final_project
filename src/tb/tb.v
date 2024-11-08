@@ -45,8 +45,44 @@ module tb();
     assign HEX[23:16] = {1'b0, HEX3};
     assign HEX[15: 8] = {1'b0, HEX4};
     assign HEX[ 7: 0] = {1'b0, HEX5};
-    
-    top DUT (.CLOCK_50(CLOCK_50), .SW(SW), .KEY(KEY), .HEX0(HEX0), .HEX1(HEX1), 
-             .HEX2(HEX2), .HEX3(HEX3), .HEX4(HEX4), .HEX5(HEX5), .LEDR(LEDR));
+	
+	// Keyboard input handling
+	wire ps2_clk;
+    wire ps2_dat;
+
+    always @(posedge CLOCK_50) begin
+        if(key_action == 1'b1) begin
+            key_action <= 1'b0;
+		end
+    end
+	
+top DUT (
+	.CLOCK_50(CLOCK_50),
+	.SW(SW),
+	.KEY(KEY),
+
+	.HEX0(HEX0),
+	.HEX1(HEX1),
+	.HEX2(HEX2),
+	.HEX3(HEX3),
+	.HEX4(HEX4),
+	.HEX5(HEX5),
+
+	.LEDR(LEDR),
+
+	.PS2_CLK(ps2_clk),
+	.PS2_DAT(ps2_dat)
+);
+
+keyboard_interface KeyBoard(
+	.clk(CLOCK_50),
+	.reset(~KEY[0]),
+	.key_action(key_action),
+	.scan_code(scan_code),
+	.ps2_clk(ps2_clk),
+	.ps2_dat(ps2_dat),
+	.lock_controls(ps2_lock_control)
+);
+
 
 endmodule

@@ -1,0 +1,1 @@
+Warning (10268): Verilog HDL information at renderer.v(100): always construct contains both blocking and non-blocking assignments File: C:/ECE241/Final Project/ece241-final_project/src/renderer.v Line: 100
