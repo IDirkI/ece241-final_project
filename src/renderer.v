@@ -50,18 +50,18 @@ module renderer(
  *                 Internal Wires and Registers Declarations                 *
  *****************************************************************************/
 	// Internal Wires
-	wire 	[7:0]	ps2_key_data;
-	wire			ps2_key_pressed;
-	wire			send_command;
-	wire			command_was_sent;
-	wire			error_communication;
+	wire 	[7:0]		ps2_key_data;
+	wire				ps2_key_pressed;
+	wire				send_command;
+	wire				command_was_sent;
+	wire				error_communication;
 	
+	wire	[24:0] 	pos;
+	wire	[24:0]	ori;
 	
 	// Registers
-	reg	[7:0]	last_data_received;
-	reg	[7:0]	the_command;
-	reg	[7:0] pos;
-	reg 	[25:0] kbCount;
+	reg	[7:0]		ps2_data_received;
+	reg	[7:0]		the_command;
 /*****************************************************************************
  *                         Finite State Machine(s)                           *
  *****************************************************************************/
@@ -75,12 +75,17 @@ module renderer(
   */
 	always @ (posedge CLOCK_50) begin
 		if(KEY[0] == 1'b0) begin// Reset condition: last data -> NONE
-			last_data_received <= 8'h00;
+			ps2_data_received <= 8'h00;
 		end
 		else if (ps2_key_pressed == 1'b1) begin
-			last_data_received <= ps2_key_data;
+			if(ps2_data_received == 8'hF0) // Break condition
+				ps2_data_received <= 8'h00;
+			else
+				ps2_data_received <= ps2_key_data;
 		end
+			
 	end
+ 
  
  /*
   *		Send Data
@@ -92,37 +97,26 @@ module renderer(
 			the_command <= SW[7:0];
 	end
 	
-	/*
-	 *		Debug Counter
-	 */
-	always @ (posedge CLOCK_50) begin
-		if(KEY[0] == 1'b0) begin
-			kbCount <= 26'b0;
-			pos = 8'b0;
-		end
-		else if(last_data_received == 8'h1D)
-			kbCount <= kbCount + 1'b1;
-			
-			if(kbCount == 26'd10_000_000) begin
-				kbCount <= 26'b0;
-				pos <= pos + 1'b1;
-			end
-			
-	end
-	
 /*****************************************************************************
  *                            Combinational Logic                            *
  *****************************************************************************/
 assign send_command = ~KEY[1];
 assign LEDR[9] = ~KEY[0];
-
-assign HEX4 = 7'b1111111;
-assign HEX5 = 7'b1111111;
  
 /*****************************************************************************
  *                              Internal Modules                             *
  *****************************************************************************/
-
+ 
+	Pose_Tracker	PT	(
+		// Inputs
+		.CLOCK_50			(CLOCK_50),
+		.reset				(~KEY[0]),
+		.keycode				(ps2_data_received),
+		
+		// Outputs
+		.position			(pos),
+		.orientation		(ori)
+	);
  
 	PS2_Controller PS2 (
 		// Inputs
@@ -144,7 +138,7 @@ assign HEX5 = 7'b1111111;
 	
 	Hexadecimal_To_Seven_Segment Segment0 (
 		// Inputs
-		.hex_number			(last_data_received[3:0]),
+		.hex_number			(pos[23:20]),
 
 		// Bidirectional
 
@@ -154,7 +148,7 @@ assign HEX5 = 7'b1111111;
 
 	Hexadecimal_To_Seven_Segment Segment1 (
 		// Inputs
-		.hex_number			(last_data_received[7:4]),
+		.hex_number			(pos[19:16]),
 
 		// Bidirectional
 
@@ -164,7 +158,7 @@ assign HEX5 = 7'b1111111;
 	
 	Hexadecimal_To_Seven_Segment Segment2 (
 		// Inputs
-		.hex_number			(pos[3:0]),
+		.hex_number			(pos[11:8]),
 
 		// Bidirectional
 
@@ -174,12 +168,33 @@ assign HEX5 = 7'b1111111;
 	
 	Hexadecimal_To_Seven_Segment Segment3 (
 		// Inputs
-		.hex_number			(pos[7:4]),
+		.hex_number			(pos[15:12]),
 
 		// Bidirectional
 
 		// Outputs
 		.seven_seg_display	(HEX3)
 	);
+	
+	Hexadecimal_To_Seven_Segment Segment4 (
+		// Inputs
+		.hex_number			(pos[3:0]),
+
+		// Bidirectional
+
+		// Outputs
+		.seven_seg_display	(HEX4)
+	);
+	
+	Hexadecimal_To_Seven_Segment Segment5 (
+		// Inputs
+		.hex_number			(pos[7:4]),
+
+		// Bidirectional
+
+		// Outputs
+		.seven_seg_display	(HEX5)
+	);
+	
 
 endmodule
