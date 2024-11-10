@@ -1,17 +1,25 @@
 # vsim -pli "simfpga.vpi" -Lf 220model -Lf altera_mf_ver -Lf verilog -c -do "run -all" tb 
-# Start time: 10:59:41 on Nov 07,2024
+# Start time: 18:38:18 on Nov 07,2024
 # Loading work.tb
 # Loading work.top
 # Loading work.renderer
+# Loading work.PS2_Controller
+# Loading work.Altera_UP_PS2_Data_In
+# Loading work.Altera_UP_PS2_Command_Out
+# Loading work.Hexadecimal_To_Seven_Segment
+# Loading work.keyboard_interface
+# Loading work.ps2_data_out
+# Loading work.ps2_command_in
 # Loading ./simfpga.vpi
 # run -all
 # Time scaling: 0.0001 sim seconds per real-time second
 # 
 # 
 # Connected to server!
+# GUI has closed the connection
 # ** Note: $finish    : ../tb/tb.v(27)
-#    Time: 12970 us  Iteration: 1  Instance: /tb
+#    Time: 3011385 us  Iteration: 1  Instance: /tb
 # 
 # Quitting...
-# End time: 10:59:43 on Nov 07,2024, Elapsed time: 0:00:02
+# End time: 19:00:41 on Nov 07,2024, Elapsed time: 0:22:23
 # Errors: 0, Warnings: 0
