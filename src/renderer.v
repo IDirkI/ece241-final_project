@@ -50,18 +50,19 @@ module renderer(
  *                 Internal Wires and Registers Declarations                 *
  *****************************************************************************/
 	// Internal Wires
-	wire 	[7:0]		ps2_key_data;
-	wire				ps2_key_pressed;
+	wire				reset;
+	wire	[7:0]		input_command;
 	wire				send_command;
 	wire				command_was_sent;
 	wire				error_communication;
+	wire	[7:0]		keycode;
 	
 	wire	[24:0] 	pos;
 	wire	[24:0]	ori;
 	
 	// Registers
-	reg	[7:0]		ps2_data_received;
-	reg	[7:0]		the_command;
+	reg	[24:0]	outPose;
+
 /*****************************************************************************
  *                         Finite State Machine(s)                           *
  *****************************************************************************/
@@ -71,37 +72,24 @@ module renderer(
  *****************************************************************************/
  
  /*
-  *		Recieve Data
+  *	Switch between showing position and orientation
   */
-	always @ (posedge CLOCK_50) begin
-		if(KEY[0] == 1'b0) begin// Reset condition: last data -> NONE
-			ps2_data_received <= 8'h00;
-		end
-		else if (ps2_key_pressed == 1'b1) begin
-			if(ps2_data_received == 8'hF0) // Break condition
-				ps2_data_received <= 8'h00;
-			else
-				ps2_data_received <= ps2_key_data;
-		end
-			
-	end
  
+ always @ (posedge CLOCK_50) begin
+	if(SW[9] == 1'b0)
+		outPose <= pos;
+	else
+		outPose <= ori;
+ end
  
- /*
-  *		Send Data
-  */
-	always @ (posedge CLOCK_50) begin
-		if(KEY[0] == 1'b0) // Reset condition: command -> NONE
-			the_command <= 0;
-		else
-			the_command <= SW[7:0];
-	end
-	
 /*****************************************************************************
  *                            Combinational Logic                            *
  *****************************************************************************/
-assign send_command = ~KEY[1];
-assign LEDR[9] = ~KEY[0];
+assign reset			= ~KEY[0];
+assign send_command 	= ~KEY[1];
+assign input_command = SW[7:0];
+
+assign LEDR[9] = reset; // Visual Reset
  
 /*****************************************************************************
  *                              Internal Modules                             *
@@ -110,19 +98,19 @@ assign LEDR[9] = ~KEY[0];
 	Pose_Tracker	PT	(
 		// Inputs
 		.CLOCK_50			(CLOCK_50),
-		.reset				(~KEY[0]),
-		.keycode				(ps2_data_received),
+		.reset				(reset),
+		.keycode				(keycode),
 		
 		// Outputs
 		.position			(pos),
 		.orientation		(ori)
 	);
  
-	PS2_Controller PS2 (
+	Keyboard_Intefracer KB_I (
 		// Inputs
 		.CLOCK_50			(CLOCK_50),
-		.reset				(~KEY[0]),
-		.the_command		(the_command),
+		.reset				(reset),
+		.input_command		(input_command),
 		.send_command		(send_command),
 		
 		// Bidirectional
@@ -132,13 +120,12 @@ assign LEDR[9] = ~KEY[0];
 		// Outputs
 		.command_was_sent	(command_was_sent),
 		.error_communication_timed_out (error_communication),
-		.received_data		(ps2_key_data),
-		.received_data_en	(ps2_key_pressed)
+		.keycode				(keycode)
 	);
 	
 	Hexadecimal_To_Seven_Segment Segment0 (
 		// Inputs
-		.hex_number			(pos[23:20]),
+		.hex_number			(outPose[19:16]),
 
 		// Bidirectional
 
@@ -148,7 +135,7 @@ assign LEDR[9] = ~KEY[0];
 
 	Hexadecimal_To_Seven_Segment Segment1 (
 		// Inputs
-		.hex_number			(pos[19:16]),
+		.hex_number			(outPose[23:20]),
 
 		// Bidirectional
 
@@ -158,7 +145,7 @@ assign LEDR[9] = ~KEY[0];
 	
 	Hexadecimal_To_Seven_Segment Segment2 (
 		// Inputs
-		.hex_number			(pos[11:8]),
+		.hex_number			(outPose[11:8]),
 
 		// Bidirectional
 
@@ -168,7 +155,7 @@ assign LEDR[9] = ~KEY[0];
 	
 	Hexadecimal_To_Seven_Segment Segment3 (
 		// Inputs
-		.hex_number			(pos[15:12]),
+		.hex_number			(outPose[15:12]),
 
 		// Bidirectional
 
@@ -178,7 +165,7 @@ assign LEDR[9] = ~KEY[0];
 	
 	Hexadecimal_To_Seven_Segment Segment4 (
 		// Inputs
-		.hex_number			(pos[3:0]),
+		.hex_number			(outPose[3:0]),
 
 		// Bidirectional
 
@@ -188,7 +175,7 @@ assign LEDR[9] = ~KEY[0];
 	
 	Hexadecimal_To_Seven_Segment Segment5 (
 		// Inputs
-		.hex_number			(pos[7:4]),
+		.hex_number			(outPose[7:4]),
 
 		// Bidirectional
 

@@ -1,5 +1,5 @@
 Analysis & Synthesis report for renderer
-Sat Nov 09 17:44:53 2024
+Sat Nov 09 19:18:33 2024
 Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
 
 
@@ -13,16 +13,16 @@ Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
   5. Analysis & Synthesis Source Files Read
   6. Analysis & Synthesis Resource Usage Summary
   7. Analysis & Synthesis Resource Utilization by Entity
-  8. State Machine - |renderer|PS2_Controller:PS2|s_ps2_transceiver
-  9. State Machine - |renderer|PS2_Controller:PS2|Altera_UP_PS2_Command_Out:PS2_Command_Out|s_ps2_transmitter
- 10. State Machine - |renderer|PS2_Controller:PS2|Altera_UP_PS2_Data_In:PS2_Data_In|s_ps2_receiver
+  8. State Machine - |renderer|Keyboard_Intefracer:KB_I|PS2_Controller:PS2|s_ps2_transceiver
+  9. State Machine - |renderer|Keyboard_Intefracer:KB_I|PS2_Controller:PS2|Altera_UP_PS2_Command_Out:PS2_Command_Out|s_ps2_transmitter
+ 10. State Machine - |renderer|Keyboard_Intefracer:KB_I|PS2_Controller:PS2|Altera_UP_PS2_Data_In:PS2_Data_In|s_ps2_receiver
  11. Registers Removed During Synthesis
  12. General Register Statistics
  13. Multiplexer Restructuring Statistics (Restructuring Performed)
  14. Parameter Settings for User Entity Instance: Pose_Tracker:PT
- 15. Parameter Settings for User Entity Instance: PS2_Controller:PS2
- 16. Parameter Settings for User Entity Instance: PS2_Controller:PS2|Altera_UP_PS2_Command_Out:PS2_Command_Out
- 17. Port Connectivity Checks: "PS2_Controller:PS2"
+ 15. Parameter Settings for User Entity Instance: Keyboard_Intefracer:KB_I|PS2_Controller:PS2
+ 16. Parameter Settings for User Entity Instance: Keyboard_Intefracer:KB_I|PS2_Controller:PS2|Altera_UP_PS2_Command_Out:PS2_Command_Out
+ 17. Port Connectivity Checks: "Keyboard_Intefracer:KB_I"
  18. Port Connectivity Checks: "Pose_Tracker:PT"
  19. Post-Synthesis Netlist Statistics for Top Partition
  20. Elapsed Time Per Partition
@@ -53,13 +53,13 @@ refer to the applicable agreement for further details.
 +-------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                  ;
 +---------------------------------+---------------------------------------------+
-; Analysis & Synthesis Status     ; Successful - Sat Nov 09 17:44:53 2024       ;
+; Analysis & Synthesis Status     ; Successful - Sat Nov 09 19:18:33 2024       ;
 ; Quartus Prime Version           ; 18.1.0 Build 625 09/12/2018 SJ Lite Edition ;
 ; Revision Name                   ; renderer                                    ;
 ; Top-level Entity Name           ; renderer                                    ;
 ; Family                          ; Cyclone V                                   ;
 ; Logic utilization (in ALMs)     ; N/A                                         ;
-; Total registers                 ; 181                                         ;
+; Total registers                 ; 205                                         ;
 ; Total pins                      ; 69                                          ;
 ; Total virtual pins              ; 0                                           ;
 ; Total block memory bits         ; 0                                           ;
@@ -188,6 +188,7 @@ refer to the applicable agreement for further details.
 ; src/PS2_Controller.v               ; yes             ; User Verilog HDL File  ; C:/ECE241/Final Project/ece241-final_project/src/PS2_Controller.v               ;         ;
 ; src/Altera_UP_PS2_Data_In.v        ; yes             ; User Verilog HDL File  ; C:/ECE241/Final Project/ece241-final_project/src/Altera_UP_PS2_Data_In.v        ;         ;
 ; src/Altera_UP_PS2_Command_Out.v    ; yes             ; User Verilog HDL File  ; C:/ECE241/Final Project/ece241-final_project/src/Altera_UP_PS2_Command_Out.v    ;         ;
+; src/Keyboard_Interfacer.v          ; yes             ; User Verilog HDL File  ; C:/ECE241/Final Project/ece241-final_project/src/Keyboard_Interfacer.v          ;         ;
 +------------------------------------+-----------------+------------------------+---------------------------------------------------------------------------------+---------+
 
 
@@ -196,7 +197,7 @@ refer to the applicable agreement for further details.
 +---------------------------------------------+----------------+
 ; Resource                                    ; Usage          ;
 +---------------------------------------------+----------------+
-; Estimate of Logic utilization (ALMs needed) ; 162            ;
+; Estimate of Logic utilization (ALMs needed) ; 164            ;
 ;                                             ;                ;
 ; Combinational ALUT usage for logic          ; 282            ;
 ;     -- 7 input functions                    ; 2              ;
@@ -205,42 +206,43 @@ refer to the applicable agreement for further details.
 ;     -- 4 input functions                    ; 64             ;
 ;     -- <=3 input functions                  ; 158            ;
 ;                                             ;                ;
-; Dedicated logic registers                   ; 181            ;
+; Dedicated logic registers                   ; 205            ;
 ;                                             ;                ;
 ; I/O pins                                    ; 69             ;
 ;                                             ;                ;
 ; Total DSP Blocks                            ; 0              ;
 ;                                             ;                ;
 ; Maximum fan-out node                        ; CLOCK_50~input ;
-; Maximum fan-out                             ; 181            ;
-; Total fan-out                               ; 1804           ;
+; Maximum fan-out                             ; 205            ;
+; Total fan-out                               ; 1876           ;
 ; Average fan-out                             ; 2.99           ;
 +---------------------------------------------+----------------+
 
 
-+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                                                                                               ;
-+---------------------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+------------------------------------------------------------------------+------------------------------+--------------+
-; Compilation Hierarchy Node                        ; Combinational ALUTs ; Dedicated Logic Registers ; Block Memory Bits ; DSP Blocks ; Pins ; Virtual Pins ; Full Hierarchy Name                                                    ; Entity Name                  ; Library Name ;
-+---------------------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+------------------------------------------------------------------------+------------------------------+--------------+
-; |renderer                                         ; 282 (3)             ; 181 (16)                  ; 0                 ; 0          ; 69   ; 0            ; |renderer                                                              ; renderer                     ; work         ;
-;    |Hexadecimal_To_Seven_Segment:Segment0|        ; 7 (7)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |renderer|Hexadecimal_To_Seven_Segment:Segment0                        ; Hexadecimal_To_Seven_Segment ; work         ;
-;    |Hexadecimal_To_Seven_Segment:Segment1|        ; 7 (7)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |renderer|Hexadecimal_To_Seven_Segment:Segment1                        ; Hexadecimal_To_Seven_Segment ; work         ;
-;    |Hexadecimal_To_Seven_Segment:Segment2|        ; 7 (7)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |renderer|Hexadecimal_To_Seven_Segment:Segment2                        ; Hexadecimal_To_Seven_Segment ; work         ;
-;    |Hexadecimal_To_Seven_Segment:Segment3|        ; 7 (7)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |renderer|Hexadecimal_To_Seven_Segment:Segment3                        ; Hexadecimal_To_Seven_Segment ; work         ;
-;    |Hexadecimal_To_Seven_Segment:Segment4|        ; 7 (7)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |renderer|Hexadecimal_To_Seven_Segment:Segment4                        ; Hexadecimal_To_Seven_Segment ; work         ;
-;    |Hexadecimal_To_Seven_Segment:Segment5|        ; 7 (7)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |renderer|Hexadecimal_To_Seven_Segment:Segment5                        ; Hexadecimal_To_Seven_Segment ; work         ;
-;    |PS2_Controller:PS2|                           ; 143 (26)            ; 115 (16)                  ; 0                 ; 0          ; 0    ; 0            ; |renderer|PS2_Controller:PS2                                           ; PS2_Controller               ; work         ;
-;       |Altera_UP_PS2_Command_Out:PS2_Command_Out| ; 100 (100)           ; 73 (73)                   ; 0                 ; 0          ; 0    ; 0            ; |renderer|PS2_Controller:PS2|Altera_UP_PS2_Command_Out:PS2_Command_Out ; Altera_UP_PS2_Command_Out    ; work         ;
-;       |Altera_UP_PS2_Data_In:PS2_Data_In|         ; 17 (17)             ; 26 (26)                   ; 0                 ; 0          ; 0    ; 0            ; |renderer|PS2_Controller:PS2|Altera_UP_PS2_Data_In:PS2_Data_In         ; Altera_UP_PS2_Data_In        ; work         ;
-;    |Pose_Tracker:PT|                              ; 94 (94)             ; 50 (50)                   ; 0                 ; 0          ; 0    ; 0            ; |renderer|Pose_Tracker:PT                                              ; Pose_Tracker                 ; work         ;
-+---------------------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+------------------------------------------------------------------------+------------------------------+--------------+
++---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                                                                                                                           ;
++------------------------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+-------------------------------------------------------------------------------------------------+------------------------------+--------------+
+; Compilation Hierarchy Node                           ; Combinational ALUTs ; Dedicated Logic Registers ; Block Memory Bits ; DSP Blocks ; Pins ; Virtual Pins ; Full Hierarchy Name                                                                             ; Entity Name                  ; Library Name ;
++------------------------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+-------------------------------------------------------------------------------------------------+------------------------------+--------------+
+; |renderer                                            ; 282 (0)             ; 205 (24)                  ; 0                 ; 0          ; 69   ; 0            ; |renderer                                                                                       ; renderer                     ; work         ;
+;    |Hexadecimal_To_Seven_Segment:Segment0|           ; 7 (7)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |renderer|Hexadecimal_To_Seven_Segment:Segment0                                                 ; Hexadecimal_To_Seven_Segment ; work         ;
+;    |Hexadecimal_To_Seven_Segment:Segment1|           ; 7 (7)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |renderer|Hexadecimal_To_Seven_Segment:Segment1                                                 ; Hexadecimal_To_Seven_Segment ; work         ;
+;    |Hexadecimal_To_Seven_Segment:Segment2|           ; 7 (7)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |renderer|Hexadecimal_To_Seven_Segment:Segment2                                                 ; Hexadecimal_To_Seven_Segment ; work         ;
+;    |Hexadecimal_To_Seven_Segment:Segment3|           ; 7 (7)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |renderer|Hexadecimal_To_Seven_Segment:Segment3                                                 ; Hexadecimal_To_Seven_Segment ; work         ;
+;    |Hexadecimal_To_Seven_Segment:Segment4|           ; 7 (7)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |renderer|Hexadecimal_To_Seven_Segment:Segment4                                                 ; Hexadecimal_To_Seven_Segment ; work         ;
+;    |Hexadecimal_To_Seven_Segment:Segment5|           ; 7 (7)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |renderer|Hexadecimal_To_Seven_Segment:Segment5                                                 ; Hexadecimal_To_Seven_Segment ; work         ;
+;    |Keyboard_Intefracer:KB_I|                        ; 146 (3)             ; 131 (16)                  ; 0                 ; 0          ; 0    ; 0            ; |renderer|Keyboard_Intefracer:KB_I                                                              ; Keyboard_Intefracer          ; work         ;
+;       |PS2_Controller:PS2|                           ; 143 (26)            ; 115 (16)                  ; 0                 ; 0          ; 0    ; 0            ; |renderer|Keyboard_Intefracer:KB_I|PS2_Controller:PS2                                           ; PS2_Controller               ; work         ;
+;          |Altera_UP_PS2_Command_Out:PS2_Command_Out| ; 100 (100)           ; 73 (73)                   ; 0                 ; 0          ; 0    ; 0            ; |renderer|Keyboard_Intefracer:KB_I|PS2_Controller:PS2|Altera_UP_PS2_Command_Out:PS2_Command_Out ; Altera_UP_PS2_Command_Out    ; work         ;
+;          |Altera_UP_PS2_Data_In:PS2_Data_In|         ; 17 (17)             ; 26 (26)                   ; 0                 ; 0          ; 0    ; 0            ; |renderer|Keyboard_Intefracer:KB_I|PS2_Controller:PS2|Altera_UP_PS2_Data_In:PS2_Data_In         ; Altera_UP_PS2_Data_In        ; work         ;
+;    |Pose_Tracker:PT|                                 ; 94 (94)             ; 50 (50)                   ; 0                 ; 0          ; 0    ; 0            ; |renderer|Pose_Tracker:PT                                                                       ; Pose_Tracker                 ; work         ;
++------------------------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+-------------------------------------------------------------------------------------------------+------------------------------+--------------+
 Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
 
 
 Encoding Type:  One-Hot
 +--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; State Machine - |renderer|PS2_Controller:PS2|s_ps2_transceiver                                                                                                                                                                                               ;
+; State Machine - |renderer|Keyboard_Intefracer:KB_I|PS2_Controller:PS2|s_ps2_transceiver                                                                                                                                                                      ;
 +--------------------------------------------+--------------------------------------------+-------------------------------------------+---------------------------------------+------------------------------------+-------------------------------------------+
 ; Name                                       ; s_ps2_transceiver.PS2_STATE_3_END_TRANSFER ; s_ps2_transceiver.PS2_STATE_2_COMMAND_OUT ; s_ps2_transceiver.PS2_STATE_1_DATA_IN ; s_ps2_transceiver.PS2_STATE_0_IDLE ; s_ps2_transceiver.PS2_STATE_4_END_DELAYED ;
 +--------------------------------------------+--------------------------------------------+-------------------------------------------+---------------------------------------+------------------------------------+-------------------------------------------+
@@ -254,7 +256,7 @@ Encoding Type:  One-Hot
 
 Encoding Type:  One-Hot
 +-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; State Machine - |renderer|PS2_Controller:PS2|Altera_UP_PS2_Command_Out:PS2_Command_Out|s_ps2_transmitter                                                                                                                                                                                                                                                                                                                                            ;
+; State Machine - |renderer|Keyboard_Intefracer:KB_I|PS2_Controller:PS2|Altera_UP_PS2_Command_Out:PS2_Command_Out|s_ps2_transmitter                                                                                                                                                                                                                                                                                                                   ;
 +------------------------------------------------------+--------------------------------------------------+------------------------------------------------+-----------------------------------------------+-------------------------------------------------+---------------------------------------------+----------------------------------------------+------------------------------------------------------+------------------------------------+
 ; Name                                                 ; s_ps2_transmitter.PS2_STATE_7_TRANSMISSION_ERROR ; s_ps2_transmitter.PS2_STATE_6_COMMAND_WAS_SENT ; s_ps2_transmitter.PS2_STATE_5_RECEIVE_ACK_BIT ; s_ps2_transmitter.PS2_STATE_4_TRANSMIT_STOP_BIT ; s_ps2_transmitter.PS2_STATE_3_TRANSMIT_DATA ; s_ps2_transmitter.PS2_STATE_2_WAIT_FOR_CLOCK ; s_ps2_transmitter.PS2_STATE_1_INITIATE_COMMUNICATION ; s_ps2_transmitter.PS2_STATE_0_IDLE ;
 +------------------------------------------------------+--------------------------------------------------+------------------------------------------------+-----------------------------------------------+-------------------------------------------------+---------------------------------------------+----------------------------------------------+------------------------------------------------------+------------------------------------+
@@ -271,7 +273,7 @@ Encoding Type:  One-Hot
 
 Encoding Type:  One-Hot
 +----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; State Machine - |renderer|PS2_Controller:PS2|Altera_UP_PS2_Data_In:PS2_Data_In|s_ps2_receiver                                                                                                                                          ;
+; State Machine - |renderer|Keyboard_Intefracer:KB_I|PS2_Controller:PS2|Altera_UP_PS2_Data_In:PS2_Data_In|s_ps2_receiver                                                                                                                 ;
 +------------------------------------------+--------------------------------------+------------------------------------+------------------------------------------+---------------------------------+------------------------------------+
 ; Name                                     ; s_ps2_receiver.PS2_STATE_3_PARITY_IN ; s_ps2_receiver.PS2_STATE_2_DATA_IN ; s_ps2_receiver.PS2_STATE_1_WAIT_FOR_DATA ; s_ps2_receiver.PS2_STATE_0_IDLE ; s_ps2_receiver.PS2_STATE_4_STOP_IN ;
 +------------------------------------------+--------------------------------------+------------------------------------+------------------------------------------+---------------------------------+------------------------------------+
@@ -283,20 +285,21 @@ Encoding Type:  One-Hot
 +------------------------------------------+--------------------------------------+------------------------------------+------------------------------------------+---------------------------------+------------------------------------+
 
 
-+-------------------------------------------------------------------------------------------------------+
-; Registers Removed During Synthesis                                                                    ;
-+----------------------------------------------------------------------------------+--------------------+
-; Register name                                                                    ; Reason for Removal ;
-+----------------------------------------------------------------------------------+--------------------+
-; PS2_Controller:PS2|s_ps2_transceiver~2                                           ; Lost fanout        ;
-; PS2_Controller:PS2|s_ps2_transceiver~3                                           ; Lost fanout        ;
-; PS2_Controller:PS2|Altera_UP_PS2_Command_Out:PS2_Command_Out|s_ps2_transmitter~2 ; Lost fanout        ;
-; PS2_Controller:PS2|Altera_UP_PS2_Command_Out:PS2_Command_Out|s_ps2_transmitter~3 ; Lost fanout        ;
-; PS2_Controller:PS2|Altera_UP_PS2_Command_Out:PS2_Command_Out|s_ps2_transmitter~4 ; Lost fanout        ;
-; PS2_Controller:PS2|Altera_UP_PS2_Data_In:PS2_Data_In|s_ps2_receiver~2            ; Lost fanout        ;
-; PS2_Controller:PS2|Altera_UP_PS2_Data_In:PS2_Data_In|s_ps2_receiver~3            ; Lost fanout        ;
-; Total Number of Removed Registers = 7                                            ;                    ;
-+----------------------------------------------------------------------------------+--------------------+
++----------------------------------------------------------------------------------------------------------------------------------------------------+
+; Registers Removed During Synthesis                                                                                                                 ;
++-----------------------------------------------------------------------------------------------------------+----------------------------------------+
+; Register name                                                                                             ; Reason for Removal                     ;
++-----------------------------------------------------------------------------------------------------------+----------------------------------------+
+; Pose_Tracker:PT|orientation[0..23]                                                                        ; Stuck at GND due to stuck port data_in ;
+; Keyboard_Intefracer:KB_I|PS2_Controller:PS2|s_ps2_transceiver~2                                           ; Lost fanout                            ;
+; Keyboard_Intefracer:KB_I|PS2_Controller:PS2|s_ps2_transceiver~3                                           ; Lost fanout                            ;
+; Keyboard_Intefracer:KB_I|PS2_Controller:PS2|Altera_UP_PS2_Command_Out:PS2_Command_Out|s_ps2_transmitter~2 ; Lost fanout                            ;
+; Keyboard_Intefracer:KB_I|PS2_Controller:PS2|Altera_UP_PS2_Command_Out:PS2_Command_Out|s_ps2_transmitter~3 ; Lost fanout                            ;
+; Keyboard_Intefracer:KB_I|PS2_Controller:PS2|Altera_UP_PS2_Command_Out:PS2_Command_Out|s_ps2_transmitter~4 ; Lost fanout                            ;
+; Keyboard_Intefracer:KB_I|PS2_Controller:PS2|Altera_UP_PS2_Data_In:PS2_Data_In|s_ps2_receiver~2            ; Lost fanout                            ;
+; Keyboard_Intefracer:KB_I|PS2_Controller:PS2|Altera_UP_PS2_Data_In:PS2_Data_In|s_ps2_receiver~3            ; Lost fanout                            ;
+; Total Number of Removed Registers = 31                                                                    ;                                        ;
++-----------------------------------------------------------------------------------------------------------+----------------------------------------+
 
 
 +------------------------------------------------------+
@@ -304,8 +307,8 @@ Encoding Type:  One-Hot
 +----------------------------------------------+-------+
 ; Statistic                                    ; Value ;
 +----------------------------------------------+-------+
-; Total registers                              ; 181   ;
-; Number of registers using Synchronous Clear  ; 167   ;
+; Total registers                              ; 205   ;
+; Number of registers using Synchronous Clear  ; 191   ;
 ; Number of registers using Synchronous Load   ; 24    ;
 ; Number of registers using Asynchronous Clear ; 0     ;
 ; Number of registers using Asynchronous Load  ; 0     ;
@@ -314,26 +317,26 @@ Encoding Type:  One-Hot
 +----------------------------------------------+-------+
 
 
-+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                                                                                   ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------------------------------------------------------------------------------+
-; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                                                                         ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------------------------------------------------------------------------------+
-; 3:1                ; 9 bits    ; 18 LEs        ; 0 LEs                ; 18 LEs                 ; Yes        ; |renderer|PS2_Controller:PS2|Altera_UP_PS2_Command_Out:PS2_Command_Out|ps2_command[5]              ;
-; 3:1                ; 8 bits    ; 16 LEs        ; 0 LEs                ; 16 LEs                 ; Yes        ; |renderer|PS2_Controller:PS2|Altera_UP_PS2_Data_In:PS2_Data_In|received_data[7]                    ;
-; 3:1                ; 8 bits    ; 16 LEs        ; 0 LEs                ; 16 LEs                 ; Yes        ; |renderer|PS2_Controller:PS2|Altera_UP_PS2_Data_In:PS2_Data_In|data_shift_reg[7]                   ;
-; 4:1                ; 8 bits    ; 16 LEs        ; 0 LEs                ; 16 LEs                 ; Yes        ; |renderer|ps2_data_received[5]                                                                     ;
-; 4:1                ; 8 bits    ; 16 LEs        ; 0 LEs                ; 16 LEs                 ; Yes        ; |renderer|PS2_Controller:PS2|idle_counter[3]                                                       ;
-; 4:1                ; 13 bits   ; 26 LEs        ; 0 LEs                ; 26 LEs                 ; Yes        ; |renderer|PS2_Controller:PS2|Altera_UP_PS2_Command_Out:PS2_Command_Out|command_initiate_counter[4] ;
-; 4:1                ; 20 bits   ; 40 LEs        ; 0 LEs                ; 40 LEs                 ; Yes        ; |renderer|PS2_Controller:PS2|Altera_UP_PS2_Command_Out:PS2_Command_Out|waiting_counter[1]          ;
-; 4:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; Yes        ; |renderer|PS2_Controller:PS2|Altera_UP_PS2_Command_Out:PS2_Command_Out|cur_bit[1]                  ;
-; 4:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; Yes        ; |renderer|PS2_Controller:PS2|Altera_UP_PS2_Data_In:PS2_Data_In|data_count[3]                       ;
-; 4:1                ; 17 bits   ; 34 LEs        ; 0 LEs                ; 34 LEs                 ; Yes        ; |renderer|PS2_Controller:PS2|Altera_UP_PS2_Command_Out:PS2_Command_Out|transfer_counter[3]         ;
-; 4:1                ; 26 bits   ; 52 LEs        ; 0 LEs                ; 52 LEs                 ; Yes        ; |renderer|Pose_Tracker:PT|kbCount[8]                                                               ;
-; 257:1              ; 8 bits    ; 1368 LEs      ; 16 LEs               ; 1352 LEs               ; Yes        ; |renderer|Pose_Tracker:PT|position[7]                                                              ;
-; 257:1              ; 8 bits    ; 1368 LEs      ; 16 LEs               ; 1352 LEs               ; Yes        ; |renderer|Pose_Tracker:PT|position[21]                                                             ;
-; 257:1              ; 8 bits    ; 1368 LEs      ; 16 LEs               ; 1352 LEs               ; Yes        ; |renderer|Pose_Tracker:PT|position[15]                                                             ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------------------------------------------------------------------------------+
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                                                                                                            ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+-----------------------------------------------------------------------------------------------------------------------------+
+; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                                                                                                  ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+-----------------------------------------------------------------------------------------------------------------------------+
+; 3:1                ; 9 bits    ; 18 LEs        ; 0 LEs                ; 18 LEs                 ; Yes        ; |renderer|Keyboard_Intefracer:KB_I|PS2_Controller:PS2|Altera_UP_PS2_Command_Out:PS2_Command_Out|ps2_command[3]              ;
+; 3:1                ; 8 bits    ; 16 LEs        ; 0 LEs                ; 16 LEs                 ; Yes        ; |renderer|Keyboard_Intefracer:KB_I|PS2_Controller:PS2|Altera_UP_PS2_Data_In:PS2_Data_In|received_data[4]                    ;
+; 3:1                ; 8 bits    ; 16 LEs        ; 0 LEs                ; 16 LEs                 ; Yes        ; |renderer|Keyboard_Intefracer:KB_I|PS2_Controller:PS2|Altera_UP_PS2_Data_In:PS2_Data_In|data_shift_reg[0]                   ;
+; 4:1                ; 8 bits    ; 16 LEs        ; 0 LEs                ; 16 LEs                 ; Yes        ; |renderer|Keyboard_Intefracer:KB_I|keycode[5]                                                                               ;
+; 4:1                ; 8 bits    ; 16 LEs        ; 0 LEs                ; 16 LEs                 ; Yes        ; |renderer|Keyboard_Intefracer:KB_I|PS2_Controller:PS2|idle_counter[7]                                                       ;
+; 4:1                ; 13 bits   ; 26 LEs        ; 0 LEs                ; 26 LEs                 ; Yes        ; |renderer|Keyboard_Intefracer:KB_I|PS2_Controller:PS2|Altera_UP_PS2_Command_Out:PS2_Command_Out|command_initiate_counter[3] ;
+; 4:1                ; 20 bits   ; 40 LEs        ; 0 LEs                ; 40 LEs                 ; Yes        ; |renderer|Keyboard_Intefracer:KB_I|PS2_Controller:PS2|Altera_UP_PS2_Command_Out:PS2_Command_Out|waiting_counter[12]         ;
+; 4:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; Yes        ; |renderer|Keyboard_Intefracer:KB_I|PS2_Controller:PS2|Altera_UP_PS2_Command_Out:PS2_Command_Out|cur_bit[2]                  ;
+; 4:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; Yes        ; |renderer|Keyboard_Intefracer:KB_I|PS2_Controller:PS2|Altera_UP_PS2_Data_In:PS2_Data_In|data_count[2]                       ;
+; 4:1                ; 17 bits   ; 34 LEs        ; 0 LEs                ; 34 LEs                 ; Yes        ; |renderer|Keyboard_Intefracer:KB_I|PS2_Controller:PS2|Altera_UP_PS2_Command_Out:PS2_Command_Out|transfer_counter[9]         ;
+; 4:1                ; 26 bits   ; 52 LEs        ; 0 LEs                ; 52 LEs                 ; Yes        ; |renderer|Pose_Tracker:PT|kbCount[18]                                                                                       ;
+; 257:1              ; 8 bits    ; 1368 LEs      ; 16 LEs               ; 1352 LEs               ; Yes        ; |renderer|Pose_Tracker:PT|position[5]                                                                                       ;
+; 257:1              ; 8 bits    ; 1368 LEs      ; 16 LEs               ; 1352 LEs               ; Yes        ; |renderer|Pose_Tracker:PT|position[22]                                                                                      ;
+; 257:1              ; 8 bits    ; 1368 LEs      ; 16 LEs               ; 1352 LEs               ; Yes        ; |renderer|Pose_Tracker:PT|position[12]                                                                                      ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+-----------------------------------------------------------------------------------------------------------------------------+
 
 
 +--------------------------------------------------------------+
@@ -351,44 +354,44 @@ Encoding Type:  One-Hot
 Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
 
 
-+-----------------------------------------------------------------+
-; Parameter Settings for User Entity Instance: PS2_Controller:PS2 ;
-+------------------+-------+--------------------------------------+
-; Parameter Name   ; Value ; Type                                 ;
-+------------------+-------+--------------------------------------+
-; INITIALIZE_MOUSE ; 0     ; Signed Integer                       ;
-+------------------+-------+--------------------------------------+
++------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: Keyboard_Intefracer:KB_I|PS2_Controller:PS2 ;
++------------------+-------+---------------------------------------------------------------+
+; Parameter Name   ; Value ; Type                                                          ;
++------------------+-------+---------------------------------------------------------------+
+; INITIALIZE_MOUSE ; 0     ; Signed Integer                                                ;
++------------------+-------+---------------------------------------------------------------+
 Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
 
 
-+-----------------------------------------------------------------------------------------------------------+
-; Parameter Settings for User Entity Instance: PS2_Controller:PS2|Altera_UP_PS2_Command_Out:PS2_Command_Out ;
-+------------------------------------+----------------------+-----------------------------------------------+
-; Parameter Name                     ; Value                ; Type                                          ;
-+------------------------------------+----------------------+-----------------------------------------------+
-; CLOCK_CYCLES_FOR_101US             ; 5050                 ; Signed Integer                                ;
-; NUMBER_OF_BITS_FOR_101US           ; 13                   ; Signed Integer                                ;
-; COUNTER_INCREMENT_FOR_101US        ; 0000000000001        ; Unsigned Binary                               ;
-; CLOCK_CYCLES_FOR_15MS              ; 750000               ; Signed Integer                                ;
-; NUMBER_OF_BITS_FOR_15MS            ; 20                   ; Signed Integer                                ;
-; COUNTER_INCREMENT_FOR_15MS         ; 00000000000000000001 ; Unsigned Binary                               ;
-; CLOCK_CYCLES_FOR_2MS               ; 100000               ; Signed Integer                                ;
-; NUMBER_OF_BITS_FOR_2MS             ; 17                   ; Signed Integer                                ;
-; COUNTER_INCREMENT_FOR_2MS          ; 00000000000000001    ; Unsigned Binary                               ;
-; PS2_STATE_0_IDLE                   ; 000                  ; Unsigned Binary                               ;
-; PS2_STATE_1_INITIATE_COMMUNICATION ; 001                  ; Unsigned Binary                               ;
-; PS2_STATE_2_WAIT_FOR_CLOCK         ; 010                  ; Unsigned Binary                               ;
-; PS2_STATE_3_TRANSMIT_DATA          ; 011                  ; Unsigned Binary                               ;
-; PS2_STATE_4_TRANSMIT_STOP_BIT      ; 100                  ; Unsigned Binary                               ;
-; PS2_STATE_5_RECEIVE_ACK_BIT        ; 101                  ; Unsigned Binary                               ;
-; PS2_STATE_6_COMMAND_WAS_SENT       ; 110                  ; Unsigned Binary                               ;
-; PS2_STATE_7_TRANSMISSION_ERROR     ; 111                  ; Unsigned Binary                               ;
-+------------------------------------+----------------------+-----------------------------------------------+
++------------------------------------------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: Keyboard_Intefracer:KB_I|PS2_Controller:PS2|Altera_UP_PS2_Command_Out:PS2_Command_Out ;
++------------------------------------+----------------------+------------------------------------------------------------------------+
+; Parameter Name                     ; Value                ; Type                                                                   ;
++------------------------------------+----------------------+------------------------------------------------------------------------+
+; CLOCK_CYCLES_FOR_101US             ; 5050                 ; Signed Integer                                                         ;
+; NUMBER_OF_BITS_FOR_101US           ; 13                   ; Signed Integer                                                         ;
+; COUNTER_INCREMENT_FOR_101US        ; 0000000000001        ; Unsigned Binary                                                        ;
+; CLOCK_CYCLES_FOR_15MS              ; 750000               ; Signed Integer                                                         ;
+; NUMBER_OF_BITS_FOR_15MS            ; 20                   ; Signed Integer                                                         ;
+; COUNTER_INCREMENT_FOR_15MS         ; 00000000000000000001 ; Unsigned Binary                                                        ;
+; CLOCK_CYCLES_FOR_2MS               ; 100000               ; Signed Integer                                                         ;
+; NUMBER_OF_BITS_FOR_2MS             ; 17                   ; Signed Integer                                                         ;
+; COUNTER_INCREMENT_FOR_2MS          ; 00000000000000001    ; Unsigned Binary                                                        ;
+; PS2_STATE_0_IDLE                   ; 000                  ; Unsigned Binary                                                        ;
+; PS2_STATE_1_INITIATE_COMMUNICATION ; 001                  ; Unsigned Binary                                                        ;
+; PS2_STATE_2_WAIT_FOR_CLOCK         ; 010                  ; Unsigned Binary                                                        ;
+; PS2_STATE_3_TRANSMIT_DATA          ; 011                  ; Unsigned Binary                                                        ;
+; PS2_STATE_4_TRANSMIT_STOP_BIT      ; 100                  ; Unsigned Binary                                                        ;
+; PS2_STATE_5_RECEIVE_ACK_BIT        ; 101                  ; Unsigned Binary                                                        ;
+; PS2_STATE_6_COMMAND_WAS_SENT       ; 110                  ; Unsigned Binary                                                        ;
+; PS2_STATE_7_TRANSMISSION_ERROR     ; 111                  ; Unsigned Binary                                                        ;
++------------------------------------+----------------------+------------------------------------------------------------------------+
 Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
 
 
 +-----------------------------------------------------------------------------------------------------------------------------------------+
-; Port Connectivity Checks: "PS2_Controller:PS2"                                                                                          ;
+; Port Connectivity Checks: "Keyboard_Intefracer:KB_I"                                                                                    ;
 +-------------------------------+--------+----------+-------------------------------------------------------------------------------------+
 ; Port                          ; Type   ; Severity ; Details                                                                             ;
 +-------------------------------+--------+----------+-------------------------------------------------------------------------------------+
@@ -397,15 +400,14 @@ Note: In order to hide this table in the UI and the text report file, please set
 +-------------------------------+--------+----------+-------------------------------------------------------------------------------------+
 
 
-+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Port Connectivity Checks: "Pose_Tracker:PT"                                                                                                                                                                      ;
-+--------------------+--------+----------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Port               ; Type   ; Severity ; Details                                                                                                                                                                 ;
-+--------------------+--------+----------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; position           ; Output ; Warning  ; Output or bidir port (24 bits) is smaller than the port expression (25 bits) it drives.  The 1 most-significant bit(s) in the port expression will be connected to GND. ;
-; orientation        ; Output ; Warning  ; Output or bidir port (24 bits) is smaller than the port expression (25 bits) it drives.  The 1 most-significant bit(s) in the port expression will be connected to GND. ;
-; orientation[23..0] ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed.                                                                                     ;
-+--------------------+--------+----------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "Pose_Tracker:PT"                                                                                                                                                               ;
++-------------+--------+----------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port        ; Type   ; Severity ; Details                                                                                                                                                                 ;
++-------------+--------+----------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; position    ; Output ; Warning  ; Output or bidir port (24 bits) is smaller than the port expression (25 bits) it drives.  The 1 most-significant bit(s) in the port expression will be connected to GND. ;
+; orientation ; Output ; Warning  ; Output or bidir port (24 bits) is smaller than the port expression (25 bits) it drives.  The 1 most-significant bit(s) in the port expression will be connected to GND. ;
++-------------+--------+----------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 
 +-----------------------------------------------------+
@@ -413,11 +415,11 @@ Note: In order to hide this table in the UI and the text report file, please set
 +-----------------------+-----------------------------+
 ; Type                  ; Count                       ;
 +-----------------------+-----------------------------+
-; arriav_ff             ; 181                         ;
+; arriav_ff             ; 205                         ;
 ;     ENA               ; 8                           ;
 ;     ENA SCLR          ; 117                         ;
 ;     ENA SCLR SLD      ; 24                          ;
-;     SCLR              ; 26                          ;
+;     SCLR              ; 50                          ;
 ;     plain             ; 6                           ;
 ; arriav_io_obuf        ; 2                           ;
 ; arriav_lcell_comb     ; 290                         ;
@@ -437,7 +439,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 ; boundary_port         ; 69                          ;
 ;                       ;                             ;
 ; Max LUT depth         ; 3.50                        ;
-; Average LUT depth     ; 2.03                        ;
+; Average LUT depth     ; 2.00                        ;
 +-----------------------+-----------------------------+
 
 
@@ -456,7 +458,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
-    Info: Processing started: Sat Nov 09 17:44:37 2024
+    Info: Processing started: Sat Nov 09 19:18:15 2024
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off renderer -c renderer
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 10 of the 10 processors detected
@@ -472,13 +474,16 @@ Info (12021): Found 1 design units, including 1 entities, in source file src/alt
     Info (12023): Found entity 1: Altera_UP_PS2_Data_In File: C:/ECE241/Final Project/ece241-final_project/src/Altera_UP_PS2_Data_In.v Line: 10
 Info (12021): Found 1 design units, including 1 entities, in source file src/altera_up_ps2_command_out.v
     Info (12023): Found entity 1: Altera_UP_PS2_Command_Out File: C:/ECE241/Final Project/ece241-final_project/src/Altera_UP_PS2_Command_Out.v Line: 10
+Info (12021): Found 1 design units, including 1 entities, in source file src/keyboard_interfacer.v
+    Info (12023): Found entity 1: Keyboard_Intefracer File: C:/ECE241/Final Project/ece241-final_project/src/Keyboard_Interfacer.v Line: 1
 Info (12127): Elaborating entity "renderer" for the top level hierarchy
 Warning (10034): Output port "LEDR[8..0]" at renderer.v(46) has no driver File: C:/ECE241/Final Project/ece241-final_project/src/renderer.v Line: 46
-Info (12128): Elaborating entity "Pose_Tracker" for hierarchy "Pose_Tracker:PT" File: C:/ECE241/Final Project/ece241-final_project/src/renderer.v Line: 119
-Info (12128): Elaborating entity "PS2_Controller" for hierarchy "PS2_Controller:PS2" File: C:/ECE241/Final Project/ece241-final_project/src/renderer.v Line: 137
-Info (12128): Elaborating entity "Altera_UP_PS2_Data_In" for hierarchy "PS2_Controller:PS2|Altera_UP_PS2_Data_In:PS2_Data_In" File: C:/ECE241/Final Project/ece241-final_project/src/PS2_Controller.v Line: 246
-Info (12128): Elaborating entity "Altera_UP_PS2_Command_Out" for hierarchy "PS2_Controller:PS2|Altera_UP_PS2_Command_Out:PS2_Command_Out" File: C:/ECE241/Final Project/ece241-final_project/src/PS2_Controller.v Line: 266
-Info (12128): Elaborating entity "Hexadecimal_To_Seven_Segment" for hierarchy "Hexadecimal_To_Seven_Segment:Segment0" File: C:/ECE241/Final Project/ece241-final_project/src/renderer.v Line: 147
+Info (12128): Elaborating entity "Pose_Tracker" for hierarchy "Pose_Tracker:PT" File: C:/ECE241/Final Project/ece241-final_project/src/renderer.v Line: 107
+Info (12128): Elaborating entity "Keyboard_Intefracer" for hierarchy "Keyboard_Intefracer:KB_I" File: C:/ECE241/Final Project/ece241-final_project/src/renderer.v Line: 124
+Info (12128): Elaborating entity "PS2_Controller" for hierarchy "Keyboard_Intefracer:KB_I|PS2_Controller:PS2" File: C:/ECE241/Final Project/ece241-final_project/src/Keyboard_Interfacer.v Line: 110
+Info (12128): Elaborating entity "Altera_UP_PS2_Data_In" for hierarchy "Keyboard_Intefracer:KB_I|PS2_Controller:PS2|Altera_UP_PS2_Data_In:PS2_Data_In" File: C:/ECE241/Final Project/ece241-final_project/src/PS2_Controller.v Line: 246
+Info (12128): Elaborating entity "Altera_UP_PS2_Command_Out" for hierarchy "Keyboard_Intefracer:KB_I|PS2_Controller:PS2|Altera_UP_PS2_Command_Out:PS2_Command_Out" File: C:/ECE241/Final Project/ece241-final_project/src/PS2_Controller.v Line: 266
+Info (12128): Elaborating entity "Hexadecimal_To_Seven_Segment" for hierarchy "Hexadecimal_To_Seven_Segment:Segment0" File: C:/ECE241/Final Project/ece241-final_project/src/renderer.v Line: 134
 Warning (12241): 1 hierarchies have connectivity warnings - see the Connectivity Checks report folder
 Warning (13024): Output pins are stuck at VCC or GND
     Warning (13410): Pin "LEDR[0]" is stuck at GND File: C:/ECE241/Final Project/ece241-final_project/src/renderer.v Line: 46
@@ -495,21 +500,20 @@ Info (17049): 7 registers lost all their fanouts during netlist optimizations.
 Info (144001): Generated suppressed messages file C:/ECE241/Final Project/ece241-final_project/renderer.map.smsg
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
-Warning (21074): Design contains 4 input pin(s) that do not drive logic
+Warning (21074): Design contains 3 input pin(s) that do not drive logic
     Warning (15610): No output dependent on input pin "KEY[2]" File: C:/ECE241/Final Project/ece241-final_project/src/renderer.v Line: 33
     Warning (15610): No output dependent on input pin "KEY[3]" File: C:/ECE241/Final Project/ece241-final_project/src/renderer.v Line: 33
     Warning (15610): No output dependent on input pin "SW[8]" File: C:/ECE241/Final Project/ece241-final_project/src/renderer.v Line: 32
-    Warning (15610): No output dependent on input pin "SW[9]" File: C:/ECE241/Final Project/ece241-final_project/src/renderer.v Line: 32
-Info (21057): Implemented 392 device resources after synthesis - the final resource count might be different
+Info (21057): Implemented 416 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 15 input pins
     Info (21059): Implemented 52 output pins
     Info (21060): Implemented 2 bidirectional pins
-    Info (21061): Implemented 323 logic cells
-Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 18 warnings
-    Info: Peak virtual memory: 4864 megabytes
-    Info: Processing ended: Sat Nov 09 17:44:53 2024
-    Info: Elapsed time: 00:00:16
-    Info: Total CPU time (on all processors): 00:00:13
+    Info (21061): Implemented 347 logic cells
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 17 warnings
+    Info: Peak virtual memory: 4880 megabytes
+    Info: Processing ended: Sat Nov 09 19:18:33 2024
+    Info: Elapsed time: 00:00:18
+    Info: Total CPU time (on all processors): 00:00:16
 
 
 +------------------------------------------+

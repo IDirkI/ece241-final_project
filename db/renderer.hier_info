@@ -1,39 +1,44 @@
 |renderer
 CLOCK_50 => CLOCK_50.IN2
-KEY[0] => the_command.OUTPUTSELECT
-KEY[0] => the_command.OUTPUTSELECT
-KEY[0] => the_command.OUTPUTSELECT
-KEY[0] => the_command.OUTPUTSELECT
-KEY[0] => the_command.OUTPUTSELECT
-KEY[0] => the_command.OUTPUTSELECT
-KEY[0] => the_command.OUTPUTSELECT
-KEY[0] => the_command.OUTPUTSELECT
-KEY[0] => ps2_data_received.OUTPUTSELECT
-KEY[0] => ps2_data_received.OUTPUTSELECT
-KEY[0] => ps2_data_received.OUTPUTSELECT
-KEY[0] => ps2_data_received.OUTPUTSELECT
-KEY[0] => ps2_data_received.OUTPUTSELECT
-KEY[0] => ps2_data_received.OUTPUTSELECT
-KEY[0] => ps2_data_received.OUTPUTSELECT
-KEY[0] => ps2_data_received.OUTPUTSELECT
-KEY[0] => LEDR[9].DATAIN
-KEY[0] => _.IN1
-KEY[0] => _.IN1
+KEY[0] => reset.IN2
 KEY[1] => send_command.IN1
 KEY[2] => ~NO_FANOUT~
 KEY[3] => ~NO_FANOUT~
-SW[0] => the_command.DATAA
-SW[1] => the_command.DATAA
-SW[2] => the_command.DATAA
-SW[3] => the_command.DATAA
-SW[4] => the_command.DATAA
-SW[5] => the_command.DATAA
-SW[6] => the_command.DATAA
-SW[7] => the_command.DATAA
+SW[0] => input_command[0].IN1
+SW[1] => input_command[1].IN1
+SW[2] => input_command[2].IN1
+SW[3] => input_command[3].IN1
+SW[4] => input_command[4].IN1
+SW[5] => input_command[5].IN1
+SW[6] => input_command[6].IN1
+SW[7] => input_command[7].IN1
 SW[8] => ~NO_FANOUT~
-SW[9] => ~NO_FANOUT~
-PS2_CLK <> PS2_Controller:PS2.PS2_CLK
-PS2_DAT <> PS2_Controller:PS2.PS2_DAT
+SW[9] => outPose.OUTPUTSELECT
+SW[9] => outPose.OUTPUTSELECT
+SW[9] => outPose.OUTPUTSELECT
+SW[9] => outPose.OUTPUTSELECT
+SW[9] => outPose.OUTPUTSELECT
+SW[9] => outPose.OUTPUTSELECT
+SW[9] => outPose.OUTPUTSELECT
+SW[9] => outPose.OUTPUTSELECT
+SW[9] => outPose.OUTPUTSELECT
+SW[9] => outPose.OUTPUTSELECT
+SW[9] => outPose.OUTPUTSELECT
+SW[9] => outPose.OUTPUTSELECT
+SW[9] => outPose.OUTPUTSELECT
+SW[9] => outPose.OUTPUTSELECT
+SW[9] => outPose.OUTPUTSELECT
+SW[9] => outPose.OUTPUTSELECT
+SW[9] => outPose.OUTPUTSELECT
+SW[9] => outPose.OUTPUTSELECT
+SW[9] => outPose.OUTPUTSELECT
+SW[9] => outPose.OUTPUTSELECT
+SW[9] => outPose.OUTPUTSELECT
+SW[9] => outPose.OUTPUTSELECT
+SW[9] => outPose.OUTPUTSELECT
+SW[9] => outPose.OUTPUTSELECT
+PS2_CLK <> Keyboard_Intefracer:KB_I.PS2_CLK
+PS2_DAT <> Keyboard_Intefracer:KB_I.PS2_DAT
 HEX0[0] <= Hexadecimal_To_Seven_Segment:Segment0.seven_seg_display
 HEX0[1] <= Hexadecimal_To_Seven_Segment:Segment0.seven_seg_display
 HEX0[2] <= Hexadecimal_To_Seven_Segment:Segment0.seven_seg_display
@@ -85,7 +90,7 @@ LEDR[5] <= <GND>
 LEDR[6] <= <GND>
 LEDR[7] <= <GND>
 LEDR[8] <= <GND>
-LEDR[9] <= KEY[0].DB_MAX_OUTPUT_PORT_TYPE
+LEDR[9] <= reset.DB_MAX_OUTPUT_PORT_TYPE
 
 
 |renderer|Pose_Tracker:PT
@@ -303,7 +308,33 @@ orientation[22] <= orientation[22]~reg0.DB_MAX_OUTPUT_PORT_TYPE
 orientation[23] <= orientation[23]~reg0.DB_MAX_OUTPUT_PORT_TYPE
 
 
-|renderer|PS2_Controller:PS2
+|renderer|Keyboard_Intefracer:KB_I
+CLOCK_50 => CLOCK_50.IN1
+reset => reset.IN1
+input_command[0] => the_command.DATAA
+input_command[1] => the_command.DATAA
+input_command[2] => the_command.DATAA
+input_command[3] => the_command.DATAA
+input_command[4] => the_command.DATAA
+input_command[5] => the_command.DATAA
+input_command[6] => the_command.DATAA
+input_command[7] => the_command.DATAA
+send_command => send_command.IN1
+PS2_CLK <> PS2_Controller:PS2.PS2_CLK
+PS2_DAT <> PS2_Controller:PS2.PS2_DAT
+command_was_sent <= PS2_Controller:PS2.command_was_sent
+error_communication_timed_out <= PS2_Controller:PS2.error_communication_timed_out
+keycode[0] <= keycode[0]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+keycode[1] <= keycode[1]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+keycode[2] <= keycode[2]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+keycode[3] <= keycode[3]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+keycode[4] <= keycode[4]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+keycode[5] <= keycode[5]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+keycode[6] <= keycode[6]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+keycode[7] <= keycode[7]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|renderer|Keyboard_Intefracer:KB_I|PS2_Controller:PS2
 CLOCK_50 => CLOCK_50.IN2
 reset => reset.IN2
 the_command[0] => the_command_w[0].IN1
@@ -330,7 +361,7 @@ received_data[7] <= Altera_UP_PS2_Data_In:PS2_Data_In.received_data
 received_data_en <= Altera_UP_PS2_Data_In:PS2_Data_In.received_data_en
 
 
-|renderer|PS2_Controller:PS2|Altera_UP_PS2_Data_In:PS2_Data_In
+|renderer|Keyboard_Intefracer:KB_I|PS2_Controller:PS2|Altera_UP_PS2_Data_In:PS2_Data_In
 clk => received_data_en~reg0.CLK
 clk => received_data[0]~reg0.CLK
 clk => received_data[1]~reg0.CLK
@@ -405,7 +436,7 @@ received_data[7] <= received_data[7]~reg0.DB_MAX_OUTPUT_PORT_TYPE
 received_data_en <= received_data_en~reg0.DB_MAX_OUTPUT_PORT_TYPE
 
 
-|renderer|PS2_Controller:PS2|Altera_UP_PS2_Command_Out:PS2_Command_Out
+|renderer|Keyboard_Intefracer:KB_I|PS2_Controller:PS2|Altera_UP_PS2_Command_Out:PS2_Command_Out
 clk => error_communication_timed_out~reg0.CLK
 clk => command_was_sent~reg0.CLK
 clk => cur_bit[0].CLK
