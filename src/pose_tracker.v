@@ -59,7 +59,7 @@ module Pose_Tracker(
 		else if(keycode != 8'h00)
 			kbCount <= kbCount + 1'b1;
 			
-			if(kbCount == 26'd10_000_000) begin
+			if(kbCount == 26'd10_000_000) begin // kbCount == 26'd10_000_000
 				kbCount <= 26'b0;
 				
 				case	(keycode)
