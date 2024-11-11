@@ -1,5 +1,5 @@
 Analysis & Synthesis report for renderer
-Sat Nov 09 19:18:33 2024
+Mon Nov 11 09:16:11 2024
 Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
 
 
@@ -53,7 +53,7 @@ refer to the applicable agreement for further details.
 +-------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                  ;
 +---------------------------------+---------------------------------------------+
-; Analysis & Synthesis Status     ; Successful - Sat Nov 09 19:18:33 2024       ;
+; Analysis & Synthesis Status     ; Successful - Mon Nov 11 09:16:11 2024       ;
 ; Quartus Prime Version           ; 18.1.0 Build 625 09/12/2018 SJ Lite Edition ;
 ; Revision Name                   ; renderer                                    ;
 ; Top-level Entity Name           ; renderer                                    ;
@@ -458,7 +458,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
-    Info: Processing started: Sat Nov 09 19:18:15 2024
+    Info: Processing started: Mon Nov 11 09:15:55 2024
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off renderer -c renderer
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 10 of the 10 processors detected
@@ -478,12 +478,12 @@ Info (12021): Found 1 design units, including 1 entities, in source file src/key
     Info (12023): Found entity 1: Keyboard_Intefracer File: C:/ECE241/Final Project/ece241-final_project/src/Keyboard_Interfacer.v Line: 1
 Info (12127): Elaborating entity "renderer" for the top level hierarchy
 Warning (10034): Output port "LEDR[8..0]" at renderer.v(46) has no driver File: C:/ECE241/Final Project/ece241-final_project/src/renderer.v Line: 46
-Info (12128): Elaborating entity "Pose_Tracker" for hierarchy "Pose_Tracker:PT" File: C:/ECE241/Final Project/ece241-final_project/src/renderer.v Line: 107
-Info (12128): Elaborating entity "Keyboard_Intefracer" for hierarchy "Keyboard_Intefracer:KB_I" File: C:/ECE241/Final Project/ece241-final_project/src/renderer.v Line: 124
+Info (12128): Elaborating entity "Pose_Tracker" for hierarchy "Pose_Tracker:PT" File: C:/ECE241/Final Project/ece241-final_project/src/renderer.v Line: 106
+Info (12128): Elaborating entity "Keyboard_Intefracer" for hierarchy "Keyboard_Intefracer:KB_I" File: C:/ECE241/Final Project/ece241-final_project/src/renderer.v Line: 123
 Info (12128): Elaborating entity "PS2_Controller" for hierarchy "Keyboard_Intefracer:KB_I|PS2_Controller:PS2" File: C:/ECE241/Final Project/ece241-final_project/src/Keyboard_Interfacer.v Line: 110
 Info (12128): Elaborating entity "Altera_UP_PS2_Data_In" for hierarchy "Keyboard_Intefracer:KB_I|PS2_Controller:PS2|Altera_UP_PS2_Data_In:PS2_Data_In" File: C:/ECE241/Final Project/ece241-final_project/src/PS2_Controller.v Line: 246
 Info (12128): Elaborating entity "Altera_UP_PS2_Command_Out" for hierarchy "Keyboard_Intefracer:KB_I|PS2_Controller:PS2|Altera_UP_PS2_Command_Out:PS2_Command_Out" File: C:/ECE241/Final Project/ece241-final_project/src/PS2_Controller.v Line: 266
-Info (12128): Elaborating entity "Hexadecimal_To_Seven_Segment" for hierarchy "Hexadecimal_To_Seven_Segment:Segment0" File: C:/ECE241/Final Project/ece241-final_project/src/renderer.v Line: 134
+Info (12128): Elaborating entity "Hexadecimal_To_Seven_Segment" for hierarchy "Hexadecimal_To_Seven_Segment:Segment0" File: C:/ECE241/Final Project/ece241-final_project/src/renderer.v Line: 133
 Warning (12241): 1 hierarchies have connectivity warnings - see the Connectivity Checks report folder
 Warning (13024): Output pins are stuck at VCC or GND
     Warning (13410): Pin "LEDR[0]" is stuck at GND File: C:/ECE241/Final Project/ece241-final_project/src/renderer.v Line: 46
@@ -510,10 +510,10 @@ Info (21057): Implemented 416 device resources after synthesis - the final resou
     Info (21060): Implemented 2 bidirectional pins
     Info (21061): Implemented 347 logic cells
 Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 17 warnings
-    Info: Peak virtual memory: 4880 megabytes
-    Info: Processing ended: Sat Nov 09 19:18:33 2024
-    Info: Elapsed time: 00:00:18
-    Info: Total CPU time (on all processors): 00:00:16
+    Info: Peak virtual memory: 4885 megabytes
+    Info: Processing ended: Mon Nov 11 09:16:11 2024
+    Info: Elapsed time: 00:00:16
+    Info: Total CPU time (on all processors): 00:00:11
 
 
 +------------------------------------------+
