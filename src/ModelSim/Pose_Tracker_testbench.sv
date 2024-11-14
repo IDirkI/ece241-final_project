@@ -1,6 +1,9 @@
 `timescale 1ns / 1ps
 
-module testbench ( );
+module Pose_Tracker_testbench ( );
+
+	parameter 	WOI = 9,
+				WOF = 16;
 
 	parameter CLOCK_PERIOD = 10;
 
@@ -8,8 +11,8 @@ module testbench ( );
     reg reset;
 	reg [7:0] keycode;
 	
-	wire [23:0] position;
-	wire [23:0] orientation;
+	wire [2:0][WOI+WOF-1:0] position;
+	wire [2:0][WOI+WOF-1:0] orientation;
 
 	initial begin
         CLOCK_50 <= 1'b0;

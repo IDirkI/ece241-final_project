@@ -1,1 +1,1 @@
-Warning (10268): Verilog HDL information at pose_tracker.v(53): always construct contains both blocking and non-blocking assignments File: C:/ECE241/Final Project/ece241-final_project/src/pose_tracker.v Line: 53
+Warning (10268): Verilog HDL information at pose_tracker.sv(53): always construct contains both blocking and non-blocking assignments File: C:/ECE241/Final Project/ece241-final_project/src/pose_tracker.sv Line: 53

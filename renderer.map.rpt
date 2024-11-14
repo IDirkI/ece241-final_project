@@ -1,5 +1,5 @@
 Analysis & Synthesis report for renderer
-Mon Nov 11 09:16:11 2024
+Mon Nov 11 12:57:48 2024
 Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
 
 
@@ -19,15 +19,17 @@ Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
  11. Registers Removed During Synthesis
  12. General Register Statistics
  13. Multiplexer Restructuring Statistics (Restructuring Performed)
- 14. Parameter Settings for User Entity Instance: Pose_Tracker:PT
- 15. Parameter Settings for User Entity Instance: Keyboard_Intefracer:KB_I|PS2_Controller:PS2
- 16. Parameter Settings for User Entity Instance: Keyboard_Intefracer:KB_I|PS2_Controller:PS2|Altera_UP_PS2_Command_Out:PS2_Command_Out
- 17. Port Connectivity Checks: "Keyboard_Intefracer:KB_I"
- 18. Port Connectivity Checks: "Pose_Tracker:PT"
- 19. Post-Synthesis Netlist Statistics for Top Partition
- 20. Elapsed Time Per Partition
- 21. Analysis & Synthesis Messages
- 22. Analysis & Synthesis Suppressed Messages
+ 14. Parameter Settings for User Entity Instance: Polygon_List:LIST
+ 15. Parameter Settings for User Entity Instance: Pose_Tracker:PT
+ 16. Parameter Settings for User Entity Instance: Keyboard_Intefracer:KB_I|PS2_Controller:PS2
+ 17. Parameter Settings for User Entity Instance: Keyboard_Intefracer:KB_I|PS2_Controller:PS2|Altera_UP_PS2_Command_Out:PS2_Command_Out
+ 18. Port Connectivity Checks: "Keyboard_Intefracer:KB_I"
+ 19. Port Connectivity Checks: "Pose_Tracker:PT"
+ 20. Port Connectivity Checks: "Polygon_List:LIST"
+ 21. Post-Synthesis Netlist Statistics for Top Partition
+ 22. Elapsed Time Per Partition
+ 23. Analysis & Synthesis Messages
+ 24. Analysis & Synthesis Suppressed Messages
 
 
 
@@ -53,7 +55,7 @@ refer to the applicable agreement for further details.
 +-------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                  ;
 +---------------------------------+---------------------------------------------+
-; Analysis & Synthesis Status     ; Successful - Mon Nov 11 09:16:11 2024       ;
+; Analysis & Synthesis Status     ; Successful - Mon Nov 11 12:57:47 2024       ;
 ; Quartus Prime Version           ; 18.1.0 Build 625 09/12/2018 SJ Lite Edition ;
 ; Revision Name                   ; renderer                                    ;
 ; Top-level Entity Name           ; renderer                                    ;
@@ -177,19 +179,20 @@ refer to the applicable agreement for further details.
 +----------------------------+-------------+
 
 
-+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Source Files Read                                                                                                                                    ;
-+------------------------------------+-----------------+------------------------+---------------------------------------------------------------------------------+---------+
-; File Name with User-Entered Path   ; Used in Netlist ; File Type              ; File Name with Absolute Path                                                    ; Library ;
-+------------------------------------+-----------------+------------------------+---------------------------------------------------------------------------------+---------+
-; src/pose_tracker.v                 ; yes             ; User Verilog HDL File  ; C:/ECE241/Final Project/ece241-final_project/src/pose_tracker.v                 ;         ;
-; src/Hexadecimal_To_Seven_Segment.v ; yes             ; User Verilog HDL File  ; C:/ECE241/Final Project/ece241-final_project/src/Hexadecimal_To_Seven_Segment.v ;         ;
-; src/renderer.v                     ; yes             ; User Verilog HDL File  ; C:/ECE241/Final Project/ece241-final_project/src/renderer.v                     ;         ;
-; src/PS2_Controller.v               ; yes             ; User Verilog HDL File  ; C:/ECE241/Final Project/ece241-final_project/src/PS2_Controller.v               ;         ;
-; src/Altera_UP_PS2_Data_In.v        ; yes             ; User Verilog HDL File  ; C:/ECE241/Final Project/ece241-final_project/src/Altera_UP_PS2_Data_In.v        ;         ;
-; src/Altera_UP_PS2_Command_Out.v    ; yes             ; User Verilog HDL File  ; C:/ECE241/Final Project/ece241-final_project/src/Altera_UP_PS2_Command_Out.v    ;         ;
-; src/Keyboard_Interfacer.v          ; yes             ; User Verilog HDL File  ; C:/ECE241/Final Project/ece241-final_project/src/Keyboard_Interfacer.v          ;         ;
-+------------------------------------+-----------------+------------------------+---------------------------------------------------------------------------------+---------+
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                                                                            ;
++-------------------------------------+-----------------+------------------------------+----------------------------------------------------------------------------------+---------+
+; File Name with User-Entered Path    ; Used in Netlist ; File Type                    ; File Name with Absolute Path                                                     ; Library ;
++-------------------------------------+-----------------+------------------------------+----------------------------------------------------------------------------------+---------+
+; src/renderer.sv                     ; yes             ; User SystemVerilog HDL File  ; C:/ECE241/Final Project/ece241-final_project/src/renderer.sv                     ;         ;
+; src/PS2_Controller.sv               ; yes             ; User SystemVerilog HDL File  ; C:/ECE241/Final Project/ece241-final_project/src/PS2_Controller.sv               ;         ;
+; src/pose_tracker.sv                 ; yes             ; User SystemVerilog HDL File  ; C:/ECE241/Final Project/ece241-final_project/src/pose_tracker.sv                 ;         ;
+; src/Polygon_List.sv                 ; yes             ; User SystemVerilog HDL File  ; C:/ECE241/Final Project/ece241-final_project/src/Polygon_List.sv                 ;         ;
+; src/Keyboard_Interfacer.sv          ; yes             ; User SystemVerilog HDL File  ; C:/ECE241/Final Project/ece241-final_project/src/Keyboard_Interfacer.sv          ;         ;
+; src/Hexadecimal_To_Seven_Segment.sv ; yes             ; User SystemVerilog HDL File  ; C:/ECE241/Final Project/ece241-final_project/src/Hexadecimal_To_Seven_Segment.sv ;         ;
+; src/Altera_UP_PS2_Data_In.sv        ; yes             ; User SystemVerilog HDL File  ; C:/ECE241/Final Project/ece241-final_project/src/Altera_UP_PS2_Data_In.sv        ;         ;
+; src/Altera_UP_PS2_Command_Out.sv    ; yes             ; User SystemVerilog HDL File  ; C:/ECE241/Final Project/ece241-final_project/src/Altera_UP_PS2_Command_Out.sv    ;         ;
++-------------------------------------+-----------------+------------------------------+----------------------------------------------------------------------------------+---------+
 
 
 +--------------------------------------------------------------+
@@ -333,10 +336,44 @@ Encoding Type:  One-Hot
 ; 4:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; Yes        ; |renderer|Keyboard_Intefracer:KB_I|PS2_Controller:PS2|Altera_UP_PS2_Data_In:PS2_Data_In|data_count[2]                       ;
 ; 4:1                ; 17 bits   ; 34 LEs        ; 0 LEs                ; 34 LEs                 ; Yes        ; |renderer|Keyboard_Intefracer:KB_I|PS2_Controller:PS2|Altera_UP_PS2_Command_Out:PS2_Command_Out|transfer_counter[9]         ;
 ; 4:1                ; 26 bits   ; 52 LEs        ; 0 LEs                ; 52 LEs                 ; Yes        ; |renderer|Pose_Tracker:PT|kbCount[18]                                                                                       ;
-; 257:1              ; 8 bits    ; 1368 LEs      ; 16 LEs               ; 1352 LEs               ; Yes        ; |renderer|Pose_Tracker:PT|position[5]                                                                                       ;
-; 257:1              ; 8 bits    ; 1368 LEs      ; 16 LEs               ; 1352 LEs               ; Yes        ; |renderer|Pose_Tracker:PT|position[22]                                                                                      ;
-; 257:1              ; 8 bits    ; 1368 LEs      ; 16 LEs               ; 1352 LEs               ; Yes        ; |renderer|Pose_Tracker:PT|position[12]                                                                                      ;
+; 257:1              ; 8 bits    ; 1368 LEs      ; 16 LEs               ; 1352 LEs               ; Yes        ; |renderer|Pose_Tracker:PT|position[6]                                                                                       ;
+; 257:1              ; 8 bits    ; 1368 LEs      ; 16 LEs               ; 1352 LEs               ; Yes        ; |renderer|Pose_Tracker:PT|position[21]                                                                                      ;
+; 257:1              ; 8 bits    ; 1368 LEs      ; 16 LEs               ; 1352 LEs               ; Yes        ; |renderer|Pose_Tracker:PT|position[15]                                                                                      ;
 +--------------------+-----------+---------------+----------------------+------------------------+------------+-----------------------------------------------------------------------------------------------------------------------------+
+
+
++----------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: Polygon_List:LIST ;
++----------------+-------+---------------------------------------+
+; Parameter Name ; Value ; Type                                  ;
++----------------+-------+---------------------------------------+
+; IW             ; 16    ; Signed Integer                        ;
+; C1x            ; 0     ; Signed Integer                        ;
+; C1y            ; 0     ; Signed Integer                        ;
+; C1z            ; 0     ; Signed Integer                        ;
+; C2x            ; 1000  ; Signed Integer                        ;
+; C2y            ; 0     ; Signed Integer                        ;
+; C2z            ; 0     ; Signed Integer                        ;
+; C3x            ; 0     ; Signed Integer                        ;
+; C3y            ; 1000  ; Signed Integer                        ;
+; C3z            ; 0     ; Signed Integer                        ;
+; C4x            ; 1000  ; Signed Integer                        ;
+; C4y            ; 1000  ; Signed Integer                        ;
+; C4z            ; 0     ; Signed Integer                        ;
+; C5x            ; 0     ; Signed Integer                        ;
+; C5y            ; 0     ; Signed Integer                        ;
+; C5z            ; 1000  ; Signed Integer                        ;
+; C6x            ; 1000  ; Signed Integer                        ;
+; C6y            ; 0     ; Signed Integer                        ;
+; C6z            ; 1000  ; Signed Integer                        ;
+; C7x            ; 0     ; Signed Integer                        ;
+; C7y            ; 1000  ; Signed Integer                        ;
+; C7z            ; 1000  ; Signed Integer                        ;
+; C8x            ; 1000  ; Signed Integer                        ;
+; C8y            ; 1000  ; Signed Integer                        ;
+; C8z            ; 1000  ; Signed Integer                        ;
++----------------+-------+---------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
 
 
 +--------------------------------------------------------------+
@@ -410,6 +447,26 @@ Note: In order to hide this table in the UI and the text report file, please set
 +-------------+--------+----------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 
++------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "Polygon_List:LIST"                                                                    ;
++--------+--------+----------+-------------------------------------------------------------------------------------+
+; Port   ; Type   ; Severity ; Details                                                                             ;
++--------+--------+----------+-------------------------------------------------------------------------------------+
+; Poly1  ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; Poly2  ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; Poly3  ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; Poly4  ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; Poly5  ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; Poly6  ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; Poly7  ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; Poly8  ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; Poly9  ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; Poly10 ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; Poly11 ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; Poly12 ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++--------+--------+----------+-------------------------------------------------------------------------------------+
+
+
 +-----------------------------------------------------+
 ; Post-Synthesis Netlist Statistics for Top Partition ;
 +-----------------------+-----------------------------+
@@ -458,62 +515,101 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
-    Info: Processing started: Mon Nov 11 09:15:55 2024
+    Info: Processing started: Mon Nov 11 12:57:28 2024
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off renderer -c renderer
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 10 of the 10 processors detected
-Info (12021): Found 1 design units, including 1 entities, in source file src/pose_tracker.v
-    Info (12023): Found entity 1: Pose_Tracker File: C:/ECE241/Final Project/ece241-final_project/src/pose_tracker.v Line: 1
-Info (12021): Found 1 design units, including 1 entities, in source file src/hexadecimal_to_seven_segment.v
-    Info (12023): Found entity 1: Hexadecimal_To_Seven_Segment File: C:/ECE241/Final Project/ece241-final_project/src/Hexadecimal_To_Seven_Segment.v Line: 10
-Info (12021): Found 1 design units, including 1 entities, in source file src/renderer.v
-    Info (12023): Found entity 1: renderer File: C:/ECE241/Final Project/ece241-final_project/src/renderer.v Line: 2
-Info (12021): Found 1 design units, including 1 entities, in source file src/ps2_controller.v
-    Info (12023): Found entity 1: PS2_Controller File: C:/ECE241/Final Project/ece241-final_project/src/PS2_Controller.v Line: 9
-Info (12021): Found 1 design units, including 1 entities, in source file src/altera_up_ps2_data_in.v
-    Info (12023): Found entity 1: Altera_UP_PS2_Data_In File: C:/ECE241/Final Project/ece241-final_project/src/Altera_UP_PS2_Data_In.v Line: 10
-Info (12021): Found 1 design units, including 1 entities, in source file src/altera_up_ps2_command_out.v
-    Info (12023): Found entity 1: Altera_UP_PS2_Command_Out File: C:/ECE241/Final Project/ece241-final_project/src/Altera_UP_PS2_Command_Out.v Line: 10
-Info (12021): Found 1 design units, including 1 entities, in source file src/keyboard_interfacer.v
-    Info (12023): Found entity 1: Keyboard_Intefracer File: C:/ECE241/Final Project/ece241-final_project/src/Keyboard_Interfacer.v Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file src/renderer.sv
+    Info (12023): Found entity 1: renderer File: C:/ECE241/Final Project/ece241-final_project/src/renderer.sv Line: 2
+Info (12021): Found 1 design units, including 1 entities, in source file src/ps2_controller.sv
+    Info (12023): Found entity 1: PS2_Controller File: C:/ECE241/Final Project/ece241-final_project/src/PS2_Controller.sv Line: 9
+Info (12021): Found 1 design units, including 1 entities, in source file src/pose_tracker.sv
+    Info (12023): Found entity 1: Pose_Tracker File: C:/ECE241/Final Project/ece241-final_project/src/pose_tracker.sv Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file src/polygon_list.sv
+    Info (12023): Found entity 1: Polygon_List File: C:/ECE241/Final Project/ece241-final_project/src/Polygon_List.sv Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file src/keyboard_interfacer.sv
+    Info (12023): Found entity 1: Keyboard_Intefracer File: C:/ECE241/Final Project/ece241-final_project/src/Keyboard_Interfacer.sv Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file src/hexadecimal_to_seven_segment.sv
+    Info (12023): Found entity 1: Hexadecimal_To_Seven_Segment File: C:/ECE241/Final Project/ece241-final_project/src/Hexadecimal_To_Seven_Segment.sv Line: 10
+Info (12021): Found 1 design units, including 1 entities, in source file src/altera_up_ps2_data_in.sv
+    Info (12023): Found entity 1: Altera_UP_PS2_Data_In File: C:/ECE241/Final Project/ece241-final_project/src/Altera_UP_PS2_Data_In.sv Line: 10
+Info (12021): Found 1 design units, including 1 entities, in source file src/altera_up_ps2_command_out.sv
+    Info (12023): Found entity 1: Altera_UP_PS2_Command_Out File: C:/ECE241/Final Project/ece241-final_project/src/Altera_UP_PS2_Command_Out.sv Line: 10
 Info (12127): Elaborating entity "renderer" for the top level hierarchy
-Warning (10034): Output port "LEDR[8..0]" at renderer.v(46) has no driver File: C:/ECE241/Final Project/ece241-final_project/src/renderer.v Line: 46
-Info (12128): Elaborating entity "Pose_Tracker" for hierarchy "Pose_Tracker:PT" File: C:/ECE241/Final Project/ece241-final_project/src/renderer.v Line: 106
-Info (12128): Elaborating entity "Keyboard_Intefracer" for hierarchy "Keyboard_Intefracer:KB_I" File: C:/ECE241/Final Project/ece241-final_project/src/renderer.v Line: 123
-Info (12128): Elaborating entity "PS2_Controller" for hierarchy "Keyboard_Intefracer:KB_I|PS2_Controller:PS2" File: C:/ECE241/Final Project/ece241-final_project/src/Keyboard_Interfacer.v Line: 110
-Info (12128): Elaborating entity "Altera_UP_PS2_Data_In" for hierarchy "Keyboard_Intefracer:KB_I|PS2_Controller:PS2|Altera_UP_PS2_Data_In:PS2_Data_In" File: C:/ECE241/Final Project/ece241-final_project/src/PS2_Controller.v Line: 246
-Info (12128): Elaborating entity "Altera_UP_PS2_Command_Out" for hierarchy "Keyboard_Intefracer:KB_I|PS2_Controller:PS2|Altera_UP_PS2_Command_Out:PS2_Command_Out" File: C:/ECE241/Final Project/ece241-final_project/src/PS2_Controller.v Line: 266
-Info (12128): Elaborating entity "Hexadecimal_To_Seven_Segment" for hierarchy "Hexadecimal_To_Seven_Segment:Segment0" File: C:/ECE241/Final Project/ece241-final_project/src/renderer.v Line: 133
+Warning (10034): Output port "LEDR[8..0]" at renderer.sv(46) has no driver File: C:/ECE241/Final Project/ece241-final_project/src/renderer.sv Line: 46
+Info (12128): Elaborating entity "Polygon_List" for hierarchy "Polygon_List:LIST" File: C:/ECE241/Final Project/ece241-final_project/src/renderer.sv Line: 126
+Warning (10230): Verilog HDL assignment warning at Polygon_List.sv(103): truncated value with size 97 to match size of target (49) File: C:/ECE241/Final Project/ece241-final_project/src/Polygon_List.sv Line: 103
+Warning (10230): Verilog HDL assignment warning at Polygon_List.sv(104): truncated value with size 97 to match size of target (49) File: C:/ECE241/Final Project/ece241-final_project/src/Polygon_List.sv Line: 104
+Warning (10230): Verilog HDL assignment warning at Polygon_List.sv(105): truncated value with size 97 to match size of target (49) File: C:/ECE241/Final Project/ece241-final_project/src/Polygon_List.sv Line: 105
+Warning (10230): Verilog HDL assignment warning at Polygon_List.sv(107): truncated value with size 97 to match size of target (49) File: C:/ECE241/Final Project/ece241-final_project/src/Polygon_List.sv Line: 107
+Warning (10230): Verilog HDL assignment warning at Polygon_List.sv(108): truncated value with size 97 to match size of target (49) File: C:/ECE241/Final Project/ece241-final_project/src/Polygon_List.sv Line: 108
+Warning (10230): Verilog HDL assignment warning at Polygon_List.sv(109): truncated value with size 97 to match size of target (49) File: C:/ECE241/Final Project/ece241-final_project/src/Polygon_List.sv Line: 109
+Warning (10230): Verilog HDL assignment warning at Polygon_List.sv(115): truncated value with size 97 to match size of target (49) File: C:/ECE241/Final Project/ece241-final_project/src/Polygon_List.sv Line: 115
+Warning (10230): Verilog HDL assignment warning at Polygon_List.sv(116): truncated value with size 97 to match size of target (49) File: C:/ECE241/Final Project/ece241-final_project/src/Polygon_List.sv Line: 116
+Warning (10230): Verilog HDL assignment warning at Polygon_List.sv(117): truncated value with size 97 to match size of target (49) File: C:/ECE241/Final Project/ece241-final_project/src/Polygon_List.sv Line: 117
+Warning (10230): Verilog HDL assignment warning at Polygon_List.sv(119): truncated value with size 97 to match size of target (49) File: C:/ECE241/Final Project/ece241-final_project/src/Polygon_List.sv Line: 119
+Warning (10230): Verilog HDL assignment warning at Polygon_List.sv(120): truncated value with size 97 to match size of target (49) File: C:/ECE241/Final Project/ece241-final_project/src/Polygon_List.sv Line: 120
+Warning (10230): Verilog HDL assignment warning at Polygon_List.sv(121): truncated value with size 97 to match size of target (49) File: C:/ECE241/Final Project/ece241-final_project/src/Polygon_List.sv Line: 121
+Warning (10230): Verilog HDL assignment warning at Polygon_List.sv(127): truncated value with size 97 to match size of target (49) File: C:/ECE241/Final Project/ece241-final_project/src/Polygon_List.sv Line: 127
+Warning (10230): Verilog HDL assignment warning at Polygon_List.sv(128): truncated value with size 97 to match size of target (49) File: C:/ECE241/Final Project/ece241-final_project/src/Polygon_List.sv Line: 128
+Warning (10230): Verilog HDL assignment warning at Polygon_List.sv(129): truncated value with size 97 to match size of target (49) File: C:/ECE241/Final Project/ece241-final_project/src/Polygon_List.sv Line: 129
+Warning (10230): Verilog HDL assignment warning at Polygon_List.sv(131): truncated value with size 97 to match size of target (49) File: C:/ECE241/Final Project/ece241-final_project/src/Polygon_List.sv Line: 131
+Warning (10230): Verilog HDL assignment warning at Polygon_List.sv(132): truncated value with size 97 to match size of target (49) File: C:/ECE241/Final Project/ece241-final_project/src/Polygon_List.sv Line: 132
+Warning (10230): Verilog HDL assignment warning at Polygon_List.sv(133): truncated value with size 97 to match size of target (49) File: C:/ECE241/Final Project/ece241-final_project/src/Polygon_List.sv Line: 133
+Warning (10230): Verilog HDL assignment warning at Polygon_List.sv(139): truncated value with size 97 to match size of target (49) File: C:/ECE241/Final Project/ece241-final_project/src/Polygon_List.sv Line: 139
+Warning (10230): Verilog HDL assignment warning at Polygon_List.sv(140): truncated value with size 97 to match size of target (49) File: C:/ECE241/Final Project/ece241-final_project/src/Polygon_List.sv Line: 140
+Warning (10230): Verilog HDL assignment warning at Polygon_List.sv(141): truncated value with size 97 to match size of target (49) File: C:/ECE241/Final Project/ece241-final_project/src/Polygon_List.sv Line: 141
+Warning (10230): Verilog HDL assignment warning at Polygon_List.sv(143): truncated value with size 97 to match size of target (49) File: C:/ECE241/Final Project/ece241-final_project/src/Polygon_List.sv Line: 143
+Warning (10230): Verilog HDL assignment warning at Polygon_List.sv(144): truncated value with size 97 to match size of target (49) File: C:/ECE241/Final Project/ece241-final_project/src/Polygon_List.sv Line: 144
+Warning (10230): Verilog HDL assignment warning at Polygon_List.sv(145): truncated value with size 97 to match size of target (49) File: C:/ECE241/Final Project/ece241-final_project/src/Polygon_List.sv Line: 145
+Warning (10230): Verilog HDL assignment warning at Polygon_List.sv(151): truncated value with size 97 to match size of target (49) File: C:/ECE241/Final Project/ece241-final_project/src/Polygon_List.sv Line: 151
+Warning (10230): Verilog HDL assignment warning at Polygon_List.sv(152): truncated value with size 97 to match size of target (49) File: C:/ECE241/Final Project/ece241-final_project/src/Polygon_List.sv Line: 152
+Warning (10230): Verilog HDL assignment warning at Polygon_List.sv(153): truncated value with size 97 to match size of target (49) File: C:/ECE241/Final Project/ece241-final_project/src/Polygon_List.sv Line: 153
+Warning (10230): Verilog HDL assignment warning at Polygon_List.sv(155): truncated value with size 97 to match size of target (49) File: C:/ECE241/Final Project/ece241-final_project/src/Polygon_List.sv Line: 155
+Warning (10230): Verilog HDL assignment warning at Polygon_List.sv(156): truncated value with size 97 to match size of target (49) File: C:/ECE241/Final Project/ece241-final_project/src/Polygon_List.sv Line: 156
+Warning (10230): Verilog HDL assignment warning at Polygon_List.sv(157): truncated value with size 97 to match size of target (49) File: C:/ECE241/Final Project/ece241-final_project/src/Polygon_List.sv Line: 157
+Warning (10230): Verilog HDL assignment warning at Polygon_List.sv(163): truncated value with size 97 to match size of target (49) File: C:/ECE241/Final Project/ece241-final_project/src/Polygon_List.sv Line: 163
+Warning (10230): Verilog HDL assignment warning at Polygon_List.sv(164): truncated value with size 97 to match size of target (49) File: C:/ECE241/Final Project/ece241-final_project/src/Polygon_List.sv Line: 164
+Warning (10230): Verilog HDL assignment warning at Polygon_List.sv(165): truncated value with size 97 to match size of target (49) File: C:/ECE241/Final Project/ece241-final_project/src/Polygon_List.sv Line: 165
+Warning (10230): Verilog HDL assignment warning at Polygon_List.sv(167): truncated value with size 97 to match size of target (49) File: C:/ECE241/Final Project/ece241-final_project/src/Polygon_List.sv Line: 167
+Warning (10230): Verilog HDL assignment warning at Polygon_List.sv(168): truncated value with size 97 to match size of target (49) File: C:/ECE241/Final Project/ece241-final_project/src/Polygon_List.sv Line: 168
+Warning (10230): Verilog HDL assignment warning at Polygon_List.sv(169): truncated value with size 97 to match size of target (49) File: C:/ECE241/Final Project/ece241-final_project/src/Polygon_List.sv Line: 169
+Info (12128): Elaborating entity "Pose_Tracker" for hierarchy "Pose_Tracker:PT" File: C:/ECE241/Final Project/ece241-final_project/src/renderer.sv Line: 137
+Info (12128): Elaborating entity "Keyboard_Intefracer" for hierarchy "Keyboard_Intefracer:KB_I" File: C:/ECE241/Final Project/ece241-final_project/src/renderer.sv Line: 154
+Info (12128): Elaborating entity "PS2_Controller" for hierarchy "Keyboard_Intefracer:KB_I|PS2_Controller:PS2" File: C:/ECE241/Final Project/ece241-final_project/src/Keyboard_Interfacer.sv Line: 110
+Info (12128): Elaborating entity "Altera_UP_PS2_Data_In" for hierarchy "Keyboard_Intefracer:KB_I|PS2_Controller:PS2|Altera_UP_PS2_Data_In:PS2_Data_In" File: C:/ECE241/Final Project/ece241-final_project/src/PS2_Controller.sv Line: 246
+Info (12128): Elaborating entity "Altera_UP_PS2_Command_Out" for hierarchy "Keyboard_Intefracer:KB_I|PS2_Controller:PS2|Altera_UP_PS2_Command_Out:PS2_Command_Out" File: C:/ECE241/Final Project/ece241-final_project/src/PS2_Controller.sv Line: 266
+Info (12128): Elaborating entity "Hexadecimal_To_Seven_Segment" for hierarchy "Hexadecimal_To_Seven_Segment:Segment0" File: C:/ECE241/Final Project/ece241-final_project/src/renderer.sv Line: 164
 Warning (12241): 1 hierarchies have connectivity warnings - see the Connectivity Checks report folder
 Warning (13024): Output pins are stuck at VCC or GND
-    Warning (13410): Pin "LEDR[0]" is stuck at GND File: C:/ECE241/Final Project/ece241-final_project/src/renderer.v Line: 46
-    Warning (13410): Pin "LEDR[1]" is stuck at GND File: C:/ECE241/Final Project/ece241-final_project/src/renderer.v Line: 46
-    Warning (13410): Pin "LEDR[2]" is stuck at GND File: C:/ECE241/Final Project/ece241-final_project/src/renderer.v Line: 46
-    Warning (13410): Pin "LEDR[3]" is stuck at GND File: C:/ECE241/Final Project/ece241-final_project/src/renderer.v Line: 46
-    Warning (13410): Pin "LEDR[4]" is stuck at GND File: C:/ECE241/Final Project/ece241-final_project/src/renderer.v Line: 46
-    Warning (13410): Pin "LEDR[5]" is stuck at GND File: C:/ECE241/Final Project/ece241-final_project/src/renderer.v Line: 46
-    Warning (13410): Pin "LEDR[6]" is stuck at GND File: C:/ECE241/Final Project/ece241-final_project/src/renderer.v Line: 46
-    Warning (13410): Pin "LEDR[7]" is stuck at GND File: C:/ECE241/Final Project/ece241-final_project/src/renderer.v Line: 46
-    Warning (13410): Pin "LEDR[8]" is stuck at GND File: C:/ECE241/Final Project/ece241-final_project/src/renderer.v Line: 46
+    Warning (13410): Pin "LEDR[0]" is stuck at GND File: C:/ECE241/Final Project/ece241-final_project/src/renderer.sv Line: 46
+    Warning (13410): Pin "LEDR[1]" is stuck at GND File: C:/ECE241/Final Project/ece241-final_project/src/renderer.sv Line: 46
+    Warning (13410): Pin "LEDR[2]" is stuck at GND File: C:/ECE241/Final Project/ece241-final_project/src/renderer.sv Line: 46
+    Warning (13410): Pin "LEDR[3]" is stuck at GND File: C:/ECE241/Final Project/ece241-final_project/src/renderer.sv Line: 46
+    Warning (13410): Pin "LEDR[4]" is stuck at GND File: C:/ECE241/Final Project/ece241-final_project/src/renderer.sv Line: 46
+    Warning (13410): Pin "LEDR[5]" is stuck at GND File: C:/ECE241/Final Project/ece241-final_project/src/renderer.sv Line: 46
+    Warning (13410): Pin "LEDR[6]" is stuck at GND File: C:/ECE241/Final Project/ece241-final_project/src/renderer.sv Line: 46
+    Warning (13410): Pin "LEDR[7]" is stuck at GND File: C:/ECE241/Final Project/ece241-final_project/src/renderer.sv Line: 46
+    Warning (13410): Pin "LEDR[8]" is stuck at GND File: C:/ECE241/Final Project/ece241-final_project/src/renderer.sv Line: 46
 Info (286030): Timing-Driven Synthesis is running
 Info (17049): 7 registers lost all their fanouts during netlist optimizations.
 Info (144001): Generated suppressed messages file C:/ECE241/Final Project/ece241-final_project/renderer.map.smsg
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
 Warning (21074): Design contains 3 input pin(s) that do not drive logic
-    Warning (15610): No output dependent on input pin "KEY[2]" File: C:/ECE241/Final Project/ece241-final_project/src/renderer.v Line: 33
-    Warning (15610): No output dependent on input pin "KEY[3]" File: C:/ECE241/Final Project/ece241-final_project/src/renderer.v Line: 33
-    Warning (15610): No output dependent on input pin "SW[8]" File: C:/ECE241/Final Project/ece241-final_project/src/renderer.v Line: 32
+    Warning (15610): No output dependent on input pin "KEY[2]" File: C:/ECE241/Final Project/ece241-final_project/src/renderer.sv Line: 33
+    Warning (15610): No output dependent on input pin "KEY[3]" File: C:/ECE241/Final Project/ece241-final_project/src/renderer.sv Line: 33
+    Warning (15610): No output dependent on input pin "SW[8]" File: C:/ECE241/Final Project/ece241-final_project/src/renderer.sv Line: 32
 Info (21057): Implemented 416 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 15 input pins
     Info (21059): Implemented 52 output pins
     Info (21060): Implemented 2 bidirectional pins
     Info (21061): Implemented 347 logic cells
-Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 17 warnings
-    Info: Peak virtual memory: 4885 megabytes
-    Info: Processing ended: Mon Nov 11 09:16:11 2024
-    Info: Elapsed time: 00:00:16
-    Info: Total CPU time (on all processors): 00:00:11
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 53 warnings
+    Info: Peak virtual memory: 4883 megabytes
+    Info: Processing ended: Mon Nov 11 12:57:48 2024
+    Info: Elapsed time: 00:00:20
+    Info: Total CPU time (on all processors): 00:00:16
 
 
 +------------------------------------------+

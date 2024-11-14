@@ -2,9 +2,9 @@ onerror {resume}
 quietly WaveActivateNextPane {} 0
 add wave -noupdate -label CLOCK_50 -radix binary /testbench/CLOCK_50
 add wave -noupdate -label RESET -radix binary /testbench/reset
-add wave -noupdate -label KEYCODE -radix binary /testbench/keycode
-add wave -noupdate -label POS -radix binary /testbench/position
-add wave -noupdate -label ORI -radix binary /testbench/orientation
+add wave -noupdate -label KEYCODE -radix hexadecimal /testbench/keycode
+add wave -noupdate -label POS -radix decimal /testbench/position
+add wave -noupdate -label ORI -radix decimal /testbench/orientation
 TreeUpdate [SetDefaultTree]
 WaveRestoreCursors {{Cursor 1} {10000 ps} 0}
 quietly wave cursor active 1
