@@ -1,5 +1,5 @@
 Analysis & Synthesis report for renderer
-Mon Nov 11 12:57:48 2024
+Sun Nov 17 13:02:15 2024
 Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
 
 
@@ -19,17 +19,21 @@ Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
  11. Registers Removed During Synthesis
  12. General Register Statistics
  13. Multiplexer Restructuring Statistics (Restructuring Performed)
- 14. Parameter Settings for User Entity Instance: Polygon_List:LIST
- 15. Parameter Settings for User Entity Instance: Pose_Tracker:PT
- 16. Parameter Settings for User Entity Instance: Keyboard_Intefracer:KB_I|PS2_Controller:PS2
- 17. Parameter Settings for User Entity Instance: Keyboard_Intefracer:KB_I|PS2_Controller:PS2|Altera_UP_PS2_Command_Out:PS2_Command_Out
- 18. Port Connectivity Checks: "Keyboard_Intefracer:KB_I"
- 19. Port Connectivity Checks: "Pose_Tracker:PT"
- 20. Port Connectivity Checks: "Polygon_List:LIST"
- 21. Post-Synthesis Netlist Statistics for Top Partition
- 22. Elapsed Time Per Partition
- 23. Analysis & Synthesis Messages
- 24. Analysis & Synthesis Suppressed Messages
+ 14. Parameter Settings for User Entity Instance: Top-level Entity: |renderer
+ 15. Parameter Settings for User Entity Instance: Polygon_List:LIST
+ 16. Parameter Settings for User Entity Instance: Pose_Tracker:PT
+ 17. Parameter Settings for User Entity Instance: Pose_Tracker:PT|fxp_mul:mult0
+ 18. Parameter Settings for User Entity Instance: Pose_Tracker:PT|fxp_mul:mult0|fxp_zoom:res_zoom
+ 19. Parameter Settings for User Entity Instance: Keyboard_Intefracer:KB_I|PS2_Controller:PS2
+ 20. Parameter Settings for User Entity Instance: Keyboard_Intefracer:KB_I|PS2_Controller:PS2|Altera_UP_PS2_Command_Out:PS2_Command_Out
+ 21. Port Connectivity Checks: "Keyboard_Intefracer:KB_I"
+ 22. Port Connectivity Checks: "Pose_Tracker:PT|fxp_mul:mult0"
+ 23. Port Connectivity Checks: "Pose_Tracker:PT"
+ 24. Port Connectivity Checks: "Polygon_List:LIST"
+ 25. Post-Synthesis Netlist Statistics for Top Partition
+ 26. Elapsed Time Per Partition
+ 27. Analysis & Synthesis Messages
+ 28. Analysis & Synthesis Suppressed Messages
 
 
 
@@ -55,13 +59,13 @@ refer to the applicable agreement for further details.
 +-------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                  ;
 +---------------------------------+---------------------------------------------+
-; Analysis & Synthesis Status     ; Successful - Mon Nov 11 12:57:47 2024       ;
+; Analysis & Synthesis Status     ; Successful - Sun Nov 17 13:02:15 2024       ;
 ; Quartus Prime Version           ; 18.1.0 Build 625 09/12/2018 SJ Lite Edition ;
 ; Revision Name                   ; renderer                                    ;
 ; Top-level Entity Name           ; renderer                                    ;
 ; Family                          ; Cyclone V                                   ;
 ; Logic utilization (in ALMs)     ; N/A                                         ;
-; Total registers                 ; 205                                         ;
+; Total registers                 ; 167                                         ;
 ; Total pins                      ; 69                                          ;
 ; Total virtual pins              ; 0                                           ;
 ; Total block memory bits         ; 0                                           ;
@@ -192,6 +196,7 @@ refer to the applicable agreement for further details.
 ; src/Hexadecimal_To_Seven_Segment.sv ; yes             ; User SystemVerilog HDL File  ; C:/ECE241/Final Project/ece241-final_project/src/Hexadecimal_To_Seven_Segment.sv ;         ;
 ; src/Altera_UP_PS2_Data_In.sv        ; yes             ; User SystemVerilog HDL File  ; C:/ECE241/Final Project/ece241-final_project/src/Altera_UP_PS2_Data_In.sv        ;         ;
 ; src/Altera_UP_PS2_Command_Out.sv    ; yes             ; User SystemVerilog HDL File  ; C:/ECE241/Final Project/ece241-final_project/src/Altera_UP_PS2_Command_Out.sv    ;         ;
+; src/fixedpoint_lib.sv               ; yes             ; User SystemVerilog HDL File  ; C:/ECE241/Final Project/ece241-final_project/src/fixedpoint_lib.sv               ;         ;
 +-------------------------------------+-----------------+------------------------------+----------------------------------------------------------------------------------+---------+
 
 
@@ -200,25 +205,25 @@ refer to the applicable agreement for further details.
 +---------------------------------------------+----------------+
 ; Resource                                    ; Usage          ;
 +---------------------------------------------+----------------+
-; Estimate of Logic utilization (ALMs needed) ; 164            ;
+; Estimate of Logic utilization (ALMs needed) ; 124            ;
 ;                                             ;                ;
-; Combinational ALUT usage for logic          ; 282            ;
+; Combinational ALUT usage for logic          ; 209            ;
 ;     -- 7 input functions                    ; 2              ;
-;     -- 6 input functions                    ; 34             ;
-;     -- 5 input functions                    ; 24             ;
-;     -- 4 input functions                    ; 64             ;
-;     -- <=3 input functions                  ; 158            ;
+;     -- 6 input functions                    ; 32             ;
+;     -- 5 input functions                    ; 20             ;
+;     -- 4 input functions                    ; 34             ;
+;     -- <=3 input functions                  ; 121            ;
 ;                                             ;                ;
-; Dedicated logic registers                   ; 205            ;
+; Dedicated logic registers                   ; 167            ;
 ;                                             ;                ;
 ; I/O pins                                    ; 69             ;
 ;                                             ;                ;
 ; Total DSP Blocks                            ; 0              ;
 ;                                             ;                ;
 ; Maximum fan-out node                        ; CLOCK_50~input ;
-; Maximum fan-out                             ; 205            ;
-; Total fan-out                               ; 1876           ;
-; Average fan-out                             ; 2.99           ;
+; Maximum fan-out                             ; 167            ;
+; Total fan-out                               ; 1422           ;
+; Average fan-out                             ; 2.76           ;
 +---------------------------------------------+----------------+
 
 
@@ -227,18 +232,14 @@ refer to the applicable agreement for further details.
 +------------------------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+-------------------------------------------------------------------------------------------------+------------------------------+--------------+
 ; Compilation Hierarchy Node                           ; Combinational ALUTs ; Dedicated Logic Registers ; Block Memory Bits ; DSP Blocks ; Pins ; Virtual Pins ; Full Hierarchy Name                                                                             ; Entity Name                  ; Library Name ;
 +------------------------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+-------------------------------------------------------------------------------------------------+------------------------------+--------------+
-; |renderer                                            ; 282 (0)             ; 205 (24)                  ; 0                 ; 0          ; 69   ; 0            ; |renderer                                                                                       ; renderer                     ; work         ;
-;    |Hexadecimal_To_Seven_Segment:Segment0|           ; 7 (7)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |renderer|Hexadecimal_To_Seven_Segment:Segment0                                                 ; Hexadecimal_To_Seven_Segment ; work         ;
-;    |Hexadecimal_To_Seven_Segment:Segment1|           ; 7 (7)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |renderer|Hexadecimal_To_Seven_Segment:Segment1                                                 ; Hexadecimal_To_Seven_Segment ; work         ;
-;    |Hexadecimal_To_Seven_Segment:Segment2|           ; 7 (7)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |renderer|Hexadecimal_To_Seven_Segment:Segment2                                                 ; Hexadecimal_To_Seven_Segment ; work         ;
-;    |Hexadecimal_To_Seven_Segment:Segment3|           ; 7 (7)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |renderer|Hexadecimal_To_Seven_Segment:Segment3                                                 ; Hexadecimal_To_Seven_Segment ; work         ;
-;    |Hexadecimal_To_Seven_Segment:Segment4|           ; 7 (7)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |renderer|Hexadecimal_To_Seven_Segment:Segment4                                                 ; Hexadecimal_To_Seven_Segment ; work         ;
-;    |Hexadecimal_To_Seven_Segment:Segment5|           ; 7 (7)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |renderer|Hexadecimal_To_Seven_Segment:Segment5                                                 ; Hexadecimal_To_Seven_Segment ; work         ;
+; |renderer                                            ; 209 (0)             ; 167 (0)                   ; 0                 ; 0          ; 69   ; 0            ; |renderer                                                                                       ; renderer                     ; work         ;
+;    |Hexadecimal_To_Seven_Segment:hex0|               ; 7 (7)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |renderer|Hexadecimal_To_Seven_Segment:hex0                                                     ; Hexadecimal_To_Seven_Segment ; work         ;
+;    |Hexadecimal_To_Seven_Segment:hex1|               ; 7 (7)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |renderer|Hexadecimal_To_Seven_Segment:hex1                                                     ; Hexadecimal_To_Seven_Segment ; work         ;
 ;    |Keyboard_Intefracer:KB_I|                        ; 146 (3)             ; 131 (16)                  ; 0                 ; 0          ; 0    ; 0            ; |renderer|Keyboard_Intefracer:KB_I                                                              ; Keyboard_Intefracer          ; work         ;
 ;       |PS2_Controller:PS2|                           ; 143 (26)            ; 115 (16)                  ; 0                 ; 0          ; 0    ; 0            ; |renderer|Keyboard_Intefracer:KB_I|PS2_Controller:PS2                                           ; PS2_Controller               ; work         ;
 ;          |Altera_UP_PS2_Command_Out:PS2_Command_Out| ; 100 (100)           ; 73 (73)                   ; 0                 ; 0          ; 0    ; 0            ; |renderer|Keyboard_Intefracer:KB_I|PS2_Controller:PS2|Altera_UP_PS2_Command_Out:PS2_Command_Out ; Altera_UP_PS2_Command_Out    ; work         ;
 ;          |Altera_UP_PS2_Data_In:PS2_Data_In|         ; 17 (17)             ; 26 (26)                   ; 0                 ; 0          ; 0    ; 0            ; |renderer|Keyboard_Intefracer:KB_I|PS2_Controller:PS2|Altera_UP_PS2_Data_In:PS2_Data_In         ; Altera_UP_PS2_Data_In        ; work         ;
-;    |Pose_Tracker:PT|                                 ; 94 (94)             ; 50 (50)                   ; 0                 ; 0          ; 0    ; 0            ; |renderer|Pose_Tracker:PT                                                                       ; Pose_Tracker                 ; work         ;
+;    |Pose_Tracker:PT|                                 ; 49 (49)             ; 36 (36)                   ; 0                 ; 0          ; 0    ; 0            ; |renderer|Pose_Tracker:PT                                                                       ; Pose_Tracker                 ; work         ;
 +------------------------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+-------------------------------------------------------------------------------------------------+------------------------------+--------------+
 Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
 
@@ -293,7 +294,7 @@ Encoding Type:  One-Hot
 +-----------------------------------------------------------------------------------------------------------+----------------------------------------+
 ; Register name                                                                                             ; Reason for Removal                     ;
 +-----------------------------------------------------------------------------------------------------------+----------------------------------------+
-; Pose_Tracker:PT|orientation[0..23]                                                                        ; Stuck at GND due to stuck port data_in ;
+; Pose_Tracker:PT|position[0][13]                                                                           ; Stuck at GND due to stuck port data_in ;
 ; Keyboard_Intefracer:KB_I|PS2_Controller:PS2|s_ps2_transceiver~2                                           ; Lost fanout                            ;
 ; Keyboard_Intefracer:KB_I|PS2_Controller:PS2|s_ps2_transceiver~3                                           ; Lost fanout                            ;
 ; Keyboard_Intefracer:KB_I|PS2_Controller:PS2|Altera_UP_PS2_Command_Out:PS2_Command_Out|s_ps2_transmitter~2 ; Lost fanout                            ;
@@ -301,7 +302,8 @@ Encoding Type:  One-Hot
 ; Keyboard_Intefracer:KB_I|PS2_Controller:PS2|Altera_UP_PS2_Command_Out:PS2_Command_Out|s_ps2_transmitter~4 ; Lost fanout                            ;
 ; Keyboard_Intefracer:KB_I|PS2_Controller:PS2|Altera_UP_PS2_Data_In:PS2_Data_In|s_ps2_receiver~2            ; Lost fanout                            ;
 ; Keyboard_Intefracer:KB_I|PS2_Controller:PS2|Altera_UP_PS2_Data_In:PS2_Data_In|s_ps2_receiver~3            ; Lost fanout                            ;
-; Total Number of Removed Registers = 31                                                                    ;                                        ;
+; Pose_Tracker:PT|position[0][24]                                                                           ; Lost fanout                            ;
+; Total Number of Removed Registers = 9                                                                     ;                                        ;
 +-----------------------------------------------------------------------------------------------------------+----------------------------------------+
 
 
@@ -310,12 +312,12 @@ Encoding Type:  One-Hot
 +----------------------------------------------+-------+
 ; Statistic                                    ; Value ;
 +----------------------------------------------+-------+
-; Total registers                              ; 205   ;
-; Number of registers using Synchronous Clear  ; 191   ;
-; Number of registers using Synchronous Load   ; 24    ;
+; Total registers                              ; 167   ;
+; Number of registers using Synchronous Clear  ; 153   ;
+; Number of registers using Synchronous Load   ; 0     ;
 ; Number of registers using Asynchronous Clear ; 0     ;
 ; Number of registers using Asynchronous Load  ; 0     ;
-; Number of registers using Clock Enable       ; 149   ;
+; Number of registers using Clock Enable       ; 135   ;
 ; Number of registers using Preset             ; 0     ;
 +----------------------------------------------+-------+
 
@@ -325,21 +327,30 @@ Encoding Type:  One-Hot
 +--------------------+-----------+---------------+----------------------+------------------------+------------+-----------------------------------------------------------------------------------------------------------------------------+
 ; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                                                                                                  ;
 +--------------------+-----------+---------------+----------------------+------------------------+------------+-----------------------------------------------------------------------------------------------------------------------------+
-; 3:1                ; 9 bits    ; 18 LEs        ; 0 LEs                ; 18 LEs                 ; Yes        ; |renderer|Keyboard_Intefracer:KB_I|PS2_Controller:PS2|Altera_UP_PS2_Command_Out:PS2_Command_Out|ps2_command[3]              ;
-; 3:1                ; 8 bits    ; 16 LEs        ; 0 LEs                ; 16 LEs                 ; Yes        ; |renderer|Keyboard_Intefracer:KB_I|PS2_Controller:PS2|Altera_UP_PS2_Data_In:PS2_Data_In|received_data[4]                    ;
-; 3:1                ; 8 bits    ; 16 LEs        ; 0 LEs                ; 16 LEs                 ; Yes        ; |renderer|Keyboard_Intefracer:KB_I|PS2_Controller:PS2|Altera_UP_PS2_Data_In:PS2_Data_In|data_shift_reg[0]                   ;
-; 4:1                ; 8 bits    ; 16 LEs        ; 0 LEs                ; 16 LEs                 ; Yes        ; |renderer|Keyboard_Intefracer:KB_I|keycode[5]                                                                               ;
-; 4:1                ; 8 bits    ; 16 LEs        ; 0 LEs                ; 16 LEs                 ; Yes        ; |renderer|Keyboard_Intefracer:KB_I|PS2_Controller:PS2|idle_counter[7]                                                       ;
-; 4:1                ; 13 bits   ; 26 LEs        ; 0 LEs                ; 26 LEs                 ; Yes        ; |renderer|Keyboard_Intefracer:KB_I|PS2_Controller:PS2|Altera_UP_PS2_Command_Out:PS2_Command_Out|command_initiate_counter[3] ;
-; 4:1                ; 20 bits   ; 40 LEs        ; 0 LEs                ; 40 LEs                 ; Yes        ; |renderer|Keyboard_Intefracer:KB_I|PS2_Controller:PS2|Altera_UP_PS2_Command_Out:PS2_Command_Out|waiting_counter[12]         ;
-; 4:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; Yes        ; |renderer|Keyboard_Intefracer:KB_I|PS2_Controller:PS2|Altera_UP_PS2_Command_Out:PS2_Command_Out|cur_bit[2]                  ;
-; 4:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; Yes        ; |renderer|Keyboard_Intefracer:KB_I|PS2_Controller:PS2|Altera_UP_PS2_Data_In:PS2_Data_In|data_count[2]                       ;
-; 4:1                ; 17 bits   ; 34 LEs        ; 0 LEs                ; 34 LEs                 ; Yes        ; |renderer|Keyboard_Intefracer:KB_I|PS2_Controller:PS2|Altera_UP_PS2_Command_Out:PS2_Command_Out|transfer_counter[9]         ;
-; 4:1                ; 26 bits   ; 52 LEs        ; 0 LEs                ; 52 LEs                 ; Yes        ; |renderer|Pose_Tracker:PT|kbCount[18]                                                                                       ;
-; 257:1              ; 8 bits    ; 1368 LEs      ; 16 LEs               ; 1352 LEs               ; Yes        ; |renderer|Pose_Tracker:PT|position[6]                                                                                       ;
-; 257:1              ; 8 bits    ; 1368 LEs      ; 16 LEs               ; 1352 LEs               ; Yes        ; |renderer|Pose_Tracker:PT|position[21]                                                                                      ;
-; 257:1              ; 8 bits    ; 1368 LEs      ; 16 LEs               ; 1352 LEs               ; Yes        ; |renderer|Pose_Tracker:PT|position[15]                                                                                      ;
+; 3:1                ; 9 bits    ; 18 LEs        ; 0 LEs                ; 18 LEs                 ; Yes        ; |renderer|Keyboard_Intefracer:KB_I|PS2_Controller:PS2|Altera_UP_PS2_Command_Out:PS2_Command_Out|ps2_command[6]              ;
+; 3:1                ; 8 bits    ; 16 LEs        ; 0 LEs                ; 16 LEs                 ; Yes        ; |renderer|Keyboard_Intefracer:KB_I|PS2_Controller:PS2|Altera_UP_PS2_Data_In:PS2_Data_In|received_data[7]                    ;
+; 3:1                ; 8 bits    ; 16 LEs        ; 0 LEs                ; 16 LEs                 ; Yes        ; |renderer|Keyboard_Intefracer:KB_I|PS2_Controller:PS2|Altera_UP_PS2_Data_In:PS2_Data_In|data_shift_reg[7]                   ;
+; 4:1                ; 26 bits   ; 52 LEs        ; 0 LEs                ; 52 LEs                 ; Yes        ; |renderer|Pose_Tracker:PT|kbCount[25]                                                                                       ;
+; 4:1                ; 8 bits    ; 16 LEs        ; 0 LEs                ; 16 LEs                 ; Yes        ; |renderer|Keyboard_Intefracer:KB_I|keycode[0]                                                                               ;
+; 4:1                ; 8 bits    ; 16 LEs        ; 0 LEs                ; 16 LEs                 ; Yes        ; |renderer|Keyboard_Intefracer:KB_I|PS2_Controller:PS2|idle_counter[6]                                                       ;
+; 4:1                ; 13 bits   ; 26 LEs        ; 0 LEs                ; 26 LEs                 ; Yes        ; |renderer|Keyboard_Intefracer:KB_I|PS2_Controller:PS2|Altera_UP_PS2_Command_Out:PS2_Command_Out|command_initiate_counter[6] ;
+; 4:1                ; 20 bits   ; 40 LEs        ; 0 LEs                ; 40 LEs                 ; Yes        ; |renderer|Keyboard_Intefracer:KB_I|PS2_Controller:PS2|Altera_UP_PS2_Command_Out:PS2_Command_Out|waiting_counter[4]          ;
+; 4:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; Yes        ; |renderer|Keyboard_Intefracer:KB_I|PS2_Controller:PS2|Altera_UP_PS2_Command_Out:PS2_Command_Out|cur_bit[0]                  ;
+; 4:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; Yes        ; |renderer|Keyboard_Intefracer:KB_I|PS2_Controller:PS2|Altera_UP_PS2_Data_In:PS2_Data_In|data_count[3]                       ;
+; 4:1                ; 17 bits   ; 34 LEs        ; 0 LEs                ; 34 LEs                 ; Yes        ; |renderer|Keyboard_Intefracer:KB_I|PS2_Controller:PS2|Altera_UP_PS2_Command_Out:PS2_Command_Out|transfer_counter[2]         ;
+; 258:1              ; 11 bits   ; 1892 LEs      ; 11 LEs               ; 1881 LEs               ; Yes        ; |renderer|Pose_Tracker:PT|position[0][20]                                                                                   ;
 +--------------------+-----------+---------------+----------------------+------------------------+------------+-----------------------------------------------------------------------------------------------------------------------------+
+
+
++--------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: Top-level Entity: |renderer ;
++----------------+-------+-------------------------------------------------+
+; Parameter Name ; Value ; Type                                            ;
++----------------+-------+-------------------------------------------------+
+; WOI            ; 9     ; Signed Integer                                  ;
+; WOF            ; 16    ; Signed Integer                                  ;
++----------------+-------+-------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
 
 
 +----------------------------------------------------------------+
@@ -347,47 +358,52 @@ Encoding Type:  One-Hot
 +----------------+-------+---------------------------------------+
 ; Parameter Name ; Value ; Type                                  ;
 +----------------+-------+---------------------------------------+
-; IW             ; 16    ; Signed Integer                        ;
-; C1x            ; 0     ; Signed Integer                        ;
-; C1y            ; 0     ; Signed Integer                        ;
-; C1z            ; 0     ; Signed Integer                        ;
-; C2x            ; 1000  ; Signed Integer                        ;
-; C2y            ; 0     ; Signed Integer                        ;
-; C2z            ; 0     ; Signed Integer                        ;
-; C3x            ; 0     ; Signed Integer                        ;
-; C3y            ; 1000  ; Signed Integer                        ;
-; C3z            ; 0     ; Signed Integer                        ;
-; C4x            ; 1000  ; Signed Integer                        ;
-; C4y            ; 1000  ; Signed Integer                        ;
-; C4z            ; 0     ; Signed Integer                        ;
-; C5x            ; 0     ; Signed Integer                        ;
-; C5y            ; 0     ; Signed Integer                        ;
-; C5z            ; 1000  ; Signed Integer                        ;
-; C6x            ; 1000  ; Signed Integer                        ;
-; C6y            ; 0     ; Signed Integer                        ;
-; C6z            ; 1000  ; Signed Integer                        ;
-; C7x            ; 0     ; Signed Integer                        ;
-; C7y            ; 1000  ; Signed Integer                        ;
-; C7z            ; 1000  ; Signed Integer                        ;
-; C8x            ; 1000  ; Signed Integer                        ;
-; C8y            ; 1000  ; Signed Integer                        ;
-; C8z            ; 1000  ; Signed Integer                        ;
+; WOI            ; 9     ; Signed Integer                        ;
+; WOF            ; 16    ; Signed Integer                        ;
 +----------------+-------+---------------------------------------+
 Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
 
 
 +--------------------------------------------------------------+
 ; Parameter Settings for User Entity Instance: Pose_Tracker:PT ;
-+----------------+----------+----------------------------------+
-; Parameter Name ; Value    ; Type                             ;
-+----------------+----------+----------------------------------+
-; W              ; 00011101 ; Unsigned Binary                  ;
-; A              ; 00011100 ; Unsigned Binary                  ;
-; S              ; 00011011 ; Unsigned Binary                  ;
-; D              ; 00100011 ; Unsigned Binary                  ;
-; SHIFT          ; 00010010 ; Unsigned Binary                  ;
-; SPACE          ; 00101001 ; Unsigned Binary                  ;
-+----------------+----------+----------------------------------+
++----------------+-------+-------------------------------------+
+; Parameter Name ; Value ; Type                                ;
++----------------+-------+-------------------------------------+
+; WII            ; 9     ; Signed Integer                      ;
+; WIF            ; 16    ; Signed Integer                      ;
+; WOI            ; 9     ; Signed Integer                      ;
+; WOF            ; 16    ; Signed Integer                      ;
++----------------+-------+-------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++----------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: Pose_Tracker:PT|fxp_mul:mult0 ;
++----------------+-------+---------------------------------------------------+
+; Parameter Name ; Value ; Type                                              ;
++----------------+-------+---------------------------------------------------+
+; WIIA           ; 9     ; Signed Integer                                    ;
+; WIFA           ; 16    ; Signed Integer                                    ;
+; WIIB           ; 9     ; Signed Integer                                    ;
+; WIFB           ; 16    ; Signed Integer                                    ;
+; WOI            ; 9     ; Signed Integer                                    ;
+; WOF            ; 16    ; Signed Integer                                    ;
+; ROUND          ; 0     ; Signed Integer                                    ;
++----------------+-------+---------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++----------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: Pose_Tracker:PT|fxp_mul:mult0|fxp_zoom:res_zoom ;
++----------------+-------+---------------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                                ;
++----------------+-------+---------------------------------------------------------------------+
+; WII            ; 18    ; Signed Integer                                                      ;
+; WIF            ; 32    ; Signed Integer                                                      ;
+; WOI            ; 9     ; Signed Integer                                                      ;
+; WOF            ; 16    ; Signed Integer                                                      ;
+; ROUND          ; 0     ; Unsigned Binary                                                     ;
++----------------+-------+---------------------------------------------------------------------+
 Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
 
 
@@ -438,13 +454,38 @@ Note: In order to hide this table in the UI and the text report file, please set
 
 
 +-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Port Connectivity Checks: "Pose_Tracker:PT"                                                                                                                                                               ;
+; Port Connectivity Checks: "Pose_Tracker:PT|fxp_mul:mult0"                                                                                                                                                 ;
 +-------------+--------+----------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 ; Port        ; Type   ; Severity ; Details                                                                                                                                                                 ;
 +-------------+--------+----------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; position    ; Output ; Warning  ; Output or bidir port (24 bits) is smaller than the port expression (25 bits) it drives.  The 1 most-significant bit(s) in the port expression will be connected to GND. ;
-; orientation ; Output ; Warning  ; Output or bidir port (24 bits) is smaller than the port expression (25 bits) it drives.  The 1 most-significant bit(s) in the port expression will be connected to GND. ;
+; ina[24..18] ; Input  ; Info     ; Stuck at GND                                                                                                                                                            ;
+; ina[16..0]  ; Input  ; Info     ; Stuck at GND                                                                                                                                                            ;
+; ina[17]     ; Input  ; Info     ; Stuck at VCC                                                                                                                                                            ;
+; inb[17..16] ; Input  ; Info     ; Stuck at VCC                                                                                                                                                            ;
+; inb[5..2]   ; Input  ; Info     ; Stuck at VCC                                                                                                                                                            ;
+; inb[24..18] ; Input  ; Info     ; Stuck at GND                                                                                                                                                            ;
+; inb[15..14] ; Input  ; Info     ; Stuck at GND                                                                                                                                                            ;
+; inb[12..11] ; Input  ; Info     ; Stuck at GND                                                                                                                                                            ;
+; inb[9..6]   ; Input  ; Info     ; Stuck at GND                                                                                                                                                            ;
+; inb[13]     ; Input  ; Info     ; Stuck at VCC                                                                                                                                                            ;
+; inb[10]     ; Input  ; Info     ; Stuck at VCC                                                                                                                                                            ;
+; inb[1]      ; Input  ; Info     ; Stuck at GND                                                                                                                                                            ;
+; inb[0]      ; Input  ; Info     ; Stuck at VCC                                                                                                                                                            ;
+; out         ; Output ; Warning  ; Output or bidir port (25 bits) is smaller than the port expression (26 bits) it drives.  The 1 most-significant bit(s) in the port expression will be connected to GND. ;
+; overflow    ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed.                                                                                     ;
 +-------------+--------+----------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+
++------------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "Pose_Tracker:PT"                                                                                  ;
++--------------------+--------+----------+-------------------------------------------------------------------------------------+
+; Port               ; Type   ; Severity ; Details                                                                             ;
++--------------------+--------+----------+-------------------------------------------------------------------------------------+
+; position[2..1]     ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; position[0][12..0] ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; position[0][24]    ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; orientation        ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++--------------------+--------+----------+-------------------------------------------------------------------------------------+
 
 
 +------------------------------------------------------------------------------------------------------------------+
@@ -472,31 +513,30 @@ Note: In order to hide this table in the UI and the text report file, please set
 +-----------------------+-----------------------------+
 ; Type                  ; Count                       ;
 +-----------------------+-----------------------------+
-; arriav_ff             ; 205                         ;
+; arriav_ff             ; 167                         ;
 ;     ENA               ; 8                           ;
-;     ENA SCLR          ; 117                         ;
-;     ENA SCLR SLD      ; 24                          ;
-;     SCLR              ; 50                          ;
+;     ENA SCLR          ; 127                         ;
+;     SCLR              ; 26                          ;
 ;     plain             ; 6                           ;
 ; arriav_io_obuf        ; 2                           ;
-; arriav_lcell_comb     ; 290                         ;
-;     arith             ; 132                         ;
-;         1 data inputs ; 84                          ;
-;         2 data inputs ; 48                          ;
+; arriav_lcell_comb     ; 213                         ;
+;     arith             ; 94                          ;
+;         1 data inputs ; 85                          ;
+;         2 data inputs ; 9                           ;
 ;     extend            ; 2                           ;
 ;         7 data inputs ; 2                           ;
-;     normal            ; 156                         ;
+;     normal            ; 117                         ;
 ;         0 data inputs ; 1                           ;
-;         1 data inputs ; 7                           ;
-;         2 data inputs ; 12                          ;
-;         3 data inputs ; 14                          ;
-;         4 data inputs ; 64                          ;
-;         5 data inputs ; 24                          ;
-;         6 data inputs ; 34                          ;
+;         1 data inputs ; 3                           ;
+;         2 data inputs ; 11                          ;
+;         3 data inputs ; 16                          ;
+;         4 data inputs ; 34                          ;
+;         5 data inputs ; 20                          ;
+;         6 data inputs ; 32                          ;
 ; boundary_port         ; 69                          ;
 ;                       ;                             ;
 ; Max LUT depth         ; 3.50                        ;
-; Average LUT depth     ; 2.00                        ;
+; Average LUT depth     ; 2.14                        ;
 +-----------------------+-----------------------------+
 
 
@@ -505,7 +545,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 +----------------+--------------+
 ; Partition Name ; Elapsed Time ;
 +----------------+--------------+
-; Top            ; 00:00:01     ;
+; Top            ; 00:00:00     ;
 +----------------+--------------+
 
 
@@ -515,7 +555,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
-    Info: Processing started: Mon Nov 11 12:57:28 2024
+    Info: Processing started: Sun Nov 17 13:02:00 2024
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off renderer -c renderer
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 10 of the 10 processors detected
@@ -535,81 +575,147 @@ Info (12021): Found 1 design units, including 1 entities, in source file src/alt
     Info (12023): Found entity 1: Altera_UP_PS2_Data_In File: C:/ECE241/Final Project/ece241-final_project/src/Altera_UP_PS2_Data_In.sv Line: 10
 Info (12021): Found 1 design units, including 1 entities, in source file src/altera_up_ps2_command_out.sv
     Info (12023): Found entity 1: Altera_UP_PS2_Command_Out File: C:/ECE241/Final Project/ece241-final_project/src/Altera_UP_PS2_Command_Out.sv Line: 10
+Info (12021): Found 2 design units, including 2 entities, in source file src/linalg.sv
+    Info (12023): Found entity 1: dot File: C:/ECE241/Final Project/ece241-final_project/src/LinAlg.sv Line: 6
+    Info (12023): Found entity 2: matrix_mul_4x4on4x1 File: C:/ECE241/Final Project/ece241-final_project/src/LinAlg.sv Line: 141
+Warning (12019): Can't analyze file -- file src/Fixed_Point_Algebra.sv is missing
+Warning (10275): Verilog HDL Module Instantiation warning at fixedpoint_lib.sv(771): ignored dangling comma in List of Port Connections File: C:/ECE241/Final Project/ece241-final_project/src/fixedpoint_lib.sv Line: 771
+Warning (10275): Verilog HDL Module Instantiation warning at fixedpoint_lib.sv(773): ignored dangling comma in List of Port Connections File: C:/ECE241/Final Project/ece241-final_project/src/fixedpoint_lib.sv Line: 773
+Warning (10275): Verilog HDL Module Instantiation warning at fixedpoint_lib.sv(774): ignored dangling comma in List of Port Connections File: C:/ECE241/Final Project/ece241-final_project/src/fixedpoint_lib.sv Line: 774
+Warning (10275): Verilog HDL Module Instantiation warning at fixedpoint_lib.sv(775): ignored dangling comma in List of Port Connections File: C:/ECE241/Final Project/ece241-final_project/src/fixedpoint_lib.sv Line: 775
+Warning (10275): Verilog HDL Module Instantiation warning at fixedpoint_lib.sv(776): ignored dangling comma in List of Port Connections File: C:/ECE241/Final Project/ece241-final_project/src/fixedpoint_lib.sv Line: 776
+Warning (10275): Verilog HDL Module Instantiation warning at fixedpoint_lib.sv(777): ignored dangling comma in List of Port Connections File: C:/ECE241/Final Project/ece241-final_project/src/fixedpoint_lib.sv Line: 777
+Warning (10275): Verilog HDL Module Instantiation warning at fixedpoint_lib.sv(778): ignored dangling comma in List of Port Connections File: C:/ECE241/Final Project/ece241-final_project/src/fixedpoint_lib.sv Line: 778
+Warning (10275): Verilog HDL Module Instantiation warning at fixedpoint_lib.sv(779): ignored dangling comma in List of Port Connections File: C:/ECE241/Final Project/ece241-final_project/src/fixedpoint_lib.sv Line: 779
+Warning (10275): Verilog HDL Module Instantiation warning at fixedpoint_lib.sv(780): ignored dangling comma in List of Port Connections File: C:/ECE241/Final Project/ece241-final_project/src/fixedpoint_lib.sv Line: 780
+Warning (10275): Verilog HDL Module Instantiation warning at fixedpoint_lib.sv(781): ignored dangling comma in List of Port Connections File: C:/ECE241/Final Project/ece241-final_project/src/fixedpoint_lib.sv Line: 781
+Warning (10275): Verilog HDL Module Instantiation warning at fixedpoint_lib.sv(782): ignored dangling comma in List of Port Connections File: C:/ECE241/Final Project/ece241-final_project/src/fixedpoint_lib.sv Line: 782
+Info (12021): Found 14 design units, including 14 entities, in source file src/fixedpoint_lib.sv
+    Info (12023): Found entity 1: fxp_zoom File: C:/ECE241/Final Project/ece241-final_project/src/fixedpoint_lib.sv Line: 12
+    Info (12023): Found entity 2: fxp_add File: C:/ECE241/Final Project/ece241-final_project/src/fixedpoint_lib.sv Line: 87
+    Info (12023): Found entity 3: fxp_addsub File: C:/ECE241/Final Project/ece241-final_project/src/fixedpoint_lib.sv Line: 152
+    Info (12023): Found entity 4: fxp_mul File: C:/ECE241/Final Project/ece241-final_project/src/fixedpoint_lib.sv Line: 236
+    Info (12023): Found entity 5: fxp_mul_pipe File: C:/ECE241/Final Project/ece241-final_project/src/fixedpoint_lib.sv Line: 278
+    Info (12023): Found entity 6: fxp_div File: C:/ECE241/Final Project/ece241-final_project/src/fixedpoint_lib.sv Line: 335
+    Info (12023): Found entity 7: fxp_div_pipe File: C:/ECE241/Final Project/ece241-final_project/src/fixedpoint_lib.sv Line: 436
+    Info (12023): Found entity 8: fxp_sqrt File: C:/ECE241/Final Project/ece241-final_project/src/fixedpoint_lib.sv Line: 605
+    Info (12023): Found entity 9: fxp_sqrt_pipe File: C:/ECE241/Final Project/ece241-final_project/src/fixedpoint_lib.sv Line: 666
+    Info (12023): Found entity 10: fxp_sin File: C:/ECE241/Final Project/ece241-final_project/src/fixedpoint_lib.sv Line: 749
+    Info (12023): Found entity 11: fxp2float File: C:/ECE241/Final Project/ece241-final_project/src/fixedpoint_lib.sv Line: 816
+    Info (12023): Found entity 12: fxp2float_pipe File: C:/ECE241/Final Project/ece241-final_project/src/fixedpoint_lib.sv Line: 865
+    Info (12023): Found entity 13: float2fxp File: C:/ECE241/Final Project/ece241-final_project/src/fixedpoint_lib.sv Line: 952
+    Info (12023): Found entity 14: float2fxp_pipe File: C:/ECE241/Final Project/ece241-final_project/src/fixedpoint_lib.sv Line: 1013
+Info (12021): Found 2 design units, including 2 entities, in source file src/transformations.sv
+    Info (12023): Found entity 1: projection File: C:/ECE241/Final Project/ece241-final_project/src/Transformations.sv Line: 1
+    Info (12023): Found entity 2: transformer File: C:/ECE241/Final Project/ece241-final_project/src/Transformations.sv Line: 175
+Info (12021): Found 1 design units, including 1 entities, in source file src/projector.sv
+    Info (12023): Found entity 1: Projector File: C:/ECE241/Final Project/ece241-final_project/src/Projector.sv Line: 1
+Warning (10222): Verilog HDL Parameter Declaration warning at Polygon_List.sv(25): Parameter Declaration in module "Polygon_List" behaves as a Local Parameter Declaration because the module has a Module Parameter Port List File: C:/ECE241/Final Project/ece241-final_project/src/Polygon_List.sv Line: 25
+Warning (10222): Verilog HDL Parameter Declaration warning at Polygon_List.sv(30): Parameter Declaration in module "Polygon_List" behaves as a Local Parameter Declaration because the module has a Module Parameter Port List File: C:/ECE241/Final Project/ece241-final_project/src/Polygon_List.sv Line: 30
+Warning (10222): Verilog HDL Parameter Declaration warning at Polygon_List.sv(34): Parameter Declaration in module "Polygon_List" behaves as a Local Parameter Declaration because the module has a Module Parameter Port List File: C:/ECE241/Final Project/ece241-final_project/src/Polygon_List.sv Line: 34
+Warning (10222): Verilog HDL Parameter Declaration warning at Polygon_List.sv(38): Parameter Declaration in module "Polygon_List" behaves as a Local Parameter Declaration because the module has a Module Parameter Port List File: C:/ECE241/Final Project/ece241-final_project/src/Polygon_List.sv Line: 38
+Warning (10222): Verilog HDL Parameter Declaration warning at Polygon_List.sv(42): Parameter Declaration in module "Polygon_List" behaves as a Local Parameter Declaration because the module has a Module Parameter Port List File: C:/ECE241/Final Project/ece241-final_project/src/Polygon_List.sv Line: 42
+Warning (10222): Verilog HDL Parameter Declaration warning at Polygon_List.sv(46): Parameter Declaration in module "Polygon_List" behaves as a Local Parameter Declaration because the module has a Module Parameter Port List File: C:/ECE241/Final Project/ece241-final_project/src/Polygon_List.sv Line: 46
+Warning (10222): Verilog HDL Parameter Declaration warning at Polygon_List.sv(50): Parameter Declaration in module "Polygon_List" behaves as a Local Parameter Declaration because the module has a Module Parameter Port List File: C:/ECE241/Final Project/ece241-final_project/src/Polygon_List.sv Line: 50
+Warning (10222): Verilog HDL Parameter Declaration warning at Polygon_List.sv(54): Parameter Declaration in module "Polygon_List" behaves as a Local Parameter Declaration because the module has a Module Parameter Port List File: C:/ECE241/Final Project/ece241-final_project/src/Polygon_List.sv Line: 54
+Warning (10222): Verilog HDL Parameter Declaration warning at Polygon_List.sv(58): Parameter Declaration in module "Polygon_List" behaves as a Local Parameter Declaration because the module has a Module Parameter Port List File: C:/ECE241/Final Project/ece241-final_project/src/Polygon_List.sv Line: 58
+Warning (10222): Verilog HDL Parameter Declaration warning at pose_tracker.sv(21): Parameter Declaration in module "Pose_Tracker" behaves as a Local Parameter Declaration because the module has a Module Parameter Port List File: C:/ECE241/Final Project/ece241-final_project/src/pose_tracker.sv Line: 21
+Warning (10222): Verilog HDL Parameter Declaration warning at pose_tracker.sv(24): Parameter Declaration in module "Pose_Tracker" behaves as a Local Parameter Declaration because the module has a Module Parameter Port List File: C:/ECE241/Final Project/ece241-final_project/src/pose_tracker.sv Line: 24
+Warning (10222): Verilog HDL Parameter Declaration warning at pose_tracker.sv(29): Parameter Declaration in module "Pose_Tracker" behaves as a Local Parameter Declaration because the module has a Module Parameter Port List File: C:/ECE241/Final Project/ece241-final_project/src/pose_tracker.sv Line: 29
+Warning (10222): Verilog HDL Parameter Declaration warning at pose_tracker.sv(31): Parameter Declaration in module "Pose_Tracker" behaves as a Local Parameter Declaration because the module has a Module Parameter Port List File: C:/ECE241/Final Project/ece241-final_project/src/pose_tracker.sv Line: 31
+Warning (10222): Verilog HDL Parameter Declaration warning at pose_tracker.sv(41): Parameter Declaration in module "Pose_Tracker" behaves as a Local Parameter Declaration because the module has a Module Parameter Port List File: C:/ECE241/Final Project/ece241-final_project/src/pose_tracker.sv Line: 41
+Warning (10222): Verilog HDL Parameter Declaration warning at pose_tracker.sv(48): Parameter Declaration in module "Pose_Tracker" behaves as a Local Parameter Declaration because the module has a Module Parameter Port List File: C:/ECE241/Final Project/ece241-final_project/src/pose_tracker.sv Line: 48
+Warning (10222): Verilog HDL Parameter Declaration warning at Transformations.sv(19): Parameter Declaration in module "projection" behaves as a Local Parameter Declaration because the module has a Module Parameter Port List File: C:/ECE241/Final Project/ece241-final_project/src/Transformations.sv Line: 19
+Warning (10222): Verilog HDL Parameter Declaration warning at Transformations.sv(27): Parameter Declaration in module "projection" behaves as a Local Parameter Declaration because the module has a Module Parameter Port List File: C:/ECE241/Final Project/ece241-final_project/src/Transformations.sv Line: 27
 Info (12127): Elaborating entity "renderer" for the top level hierarchy
-Warning (10034): Output port "LEDR[8..0]" at renderer.sv(46) has no driver File: C:/ECE241/Final Project/ece241-final_project/src/renderer.sv Line: 46
-Info (12128): Elaborating entity "Polygon_List" for hierarchy "Polygon_List:LIST" File: C:/ECE241/Final Project/ece241-final_project/src/renderer.sv Line: 126
-Warning (10230): Verilog HDL assignment warning at Polygon_List.sv(103): truncated value with size 97 to match size of target (49) File: C:/ECE241/Final Project/ece241-final_project/src/Polygon_List.sv Line: 103
-Warning (10230): Verilog HDL assignment warning at Polygon_List.sv(104): truncated value with size 97 to match size of target (49) File: C:/ECE241/Final Project/ece241-final_project/src/Polygon_List.sv Line: 104
-Warning (10230): Verilog HDL assignment warning at Polygon_List.sv(105): truncated value with size 97 to match size of target (49) File: C:/ECE241/Final Project/ece241-final_project/src/Polygon_List.sv Line: 105
-Warning (10230): Verilog HDL assignment warning at Polygon_List.sv(107): truncated value with size 97 to match size of target (49) File: C:/ECE241/Final Project/ece241-final_project/src/Polygon_List.sv Line: 107
-Warning (10230): Verilog HDL assignment warning at Polygon_List.sv(108): truncated value with size 97 to match size of target (49) File: C:/ECE241/Final Project/ece241-final_project/src/Polygon_List.sv Line: 108
-Warning (10230): Verilog HDL assignment warning at Polygon_List.sv(109): truncated value with size 97 to match size of target (49) File: C:/ECE241/Final Project/ece241-final_project/src/Polygon_List.sv Line: 109
-Warning (10230): Verilog HDL assignment warning at Polygon_List.sv(115): truncated value with size 97 to match size of target (49) File: C:/ECE241/Final Project/ece241-final_project/src/Polygon_List.sv Line: 115
-Warning (10230): Verilog HDL assignment warning at Polygon_List.sv(116): truncated value with size 97 to match size of target (49) File: C:/ECE241/Final Project/ece241-final_project/src/Polygon_List.sv Line: 116
-Warning (10230): Verilog HDL assignment warning at Polygon_List.sv(117): truncated value with size 97 to match size of target (49) File: C:/ECE241/Final Project/ece241-final_project/src/Polygon_List.sv Line: 117
-Warning (10230): Verilog HDL assignment warning at Polygon_List.sv(119): truncated value with size 97 to match size of target (49) File: C:/ECE241/Final Project/ece241-final_project/src/Polygon_List.sv Line: 119
-Warning (10230): Verilog HDL assignment warning at Polygon_List.sv(120): truncated value with size 97 to match size of target (49) File: C:/ECE241/Final Project/ece241-final_project/src/Polygon_List.sv Line: 120
-Warning (10230): Verilog HDL assignment warning at Polygon_List.sv(121): truncated value with size 97 to match size of target (49) File: C:/ECE241/Final Project/ece241-final_project/src/Polygon_List.sv Line: 121
-Warning (10230): Verilog HDL assignment warning at Polygon_List.sv(127): truncated value with size 97 to match size of target (49) File: C:/ECE241/Final Project/ece241-final_project/src/Polygon_List.sv Line: 127
-Warning (10230): Verilog HDL assignment warning at Polygon_List.sv(128): truncated value with size 97 to match size of target (49) File: C:/ECE241/Final Project/ece241-final_project/src/Polygon_List.sv Line: 128
-Warning (10230): Verilog HDL assignment warning at Polygon_List.sv(129): truncated value with size 97 to match size of target (49) File: C:/ECE241/Final Project/ece241-final_project/src/Polygon_List.sv Line: 129
-Warning (10230): Verilog HDL assignment warning at Polygon_List.sv(131): truncated value with size 97 to match size of target (49) File: C:/ECE241/Final Project/ece241-final_project/src/Polygon_List.sv Line: 131
-Warning (10230): Verilog HDL assignment warning at Polygon_List.sv(132): truncated value with size 97 to match size of target (49) File: C:/ECE241/Final Project/ece241-final_project/src/Polygon_List.sv Line: 132
-Warning (10230): Verilog HDL assignment warning at Polygon_List.sv(133): truncated value with size 97 to match size of target (49) File: C:/ECE241/Final Project/ece241-final_project/src/Polygon_List.sv Line: 133
-Warning (10230): Verilog HDL assignment warning at Polygon_List.sv(139): truncated value with size 97 to match size of target (49) File: C:/ECE241/Final Project/ece241-final_project/src/Polygon_List.sv Line: 139
-Warning (10230): Verilog HDL assignment warning at Polygon_List.sv(140): truncated value with size 97 to match size of target (49) File: C:/ECE241/Final Project/ece241-final_project/src/Polygon_List.sv Line: 140
-Warning (10230): Verilog HDL assignment warning at Polygon_List.sv(141): truncated value with size 97 to match size of target (49) File: C:/ECE241/Final Project/ece241-final_project/src/Polygon_List.sv Line: 141
-Warning (10230): Verilog HDL assignment warning at Polygon_List.sv(143): truncated value with size 97 to match size of target (49) File: C:/ECE241/Final Project/ece241-final_project/src/Polygon_List.sv Line: 143
-Warning (10230): Verilog HDL assignment warning at Polygon_List.sv(144): truncated value with size 97 to match size of target (49) File: C:/ECE241/Final Project/ece241-final_project/src/Polygon_List.sv Line: 144
-Warning (10230): Verilog HDL assignment warning at Polygon_List.sv(145): truncated value with size 97 to match size of target (49) File: C:/ECE241/Final Project/ece241-final_project/src/Polygon_List.sv Line: 145
-Warning (10230): Verilog HDL assignment warning at Polygon_List.sv(151): truncated value with size 97 to match size of target (49) File: C:/ECE241/Final Project/ece241-final_project/src/Polygon_List.sv Line: 151
-Warning (10230): Verilog HDL assignment warning at Polygon_List.sv(152): truncated value with size 97 to match size of target (49) File: C:/ECE241/Final Project/ece241-final_project/src/Polygon_List.sv Line: 152
-Warning (10230): Verilog HDL assignment warning at Polygon_List.sv(153): truncated value with size 97 to match size of target (49) File: C:/ECE241/Final Project/ece241-final_project/src/Polygon_List.sv Line: 153
-Warning (10230): Verilog HDL assignment warning at Polygon_List.sv(155): truncated value with size 97 to match size of target (49) File: C:/ECE241/Final Project/ece241-final_project/src/Polygon_List.sv Line: 155
-Warning (10230): Verilog HDL assignment warning at Polygon_List.sv(156): truncated value with size 97 to match size of target (49) File: C:/ECE241/Final Project/ece241-final_project/src/Polygon_List.sv Line: 156
-Warning (10230): Verilog HDL assignment warning at Polygon_List.sv(157): truncated value with size 97 to match size of target (49) File: C:/ECE241/Final Project/ece241-final_project/src/Polygon_List.sv Line: 157
-Warning (10230): Verilog HDL assignment warning at Polygon_List.sv(163): truncated value with size 97 to match size of target (49) File: C:/ECE241/Final Project/ece241-final_project/src/Polygon_List.sv Line: 163
-Warning (10230): Verilog HDL assignment warning at Polygon_List.sv(164): truncated value with size 97 to match size of target (49) File: C:/ECE241/Final Project/ece241-final_project/src/Polygon_List.sv Line: 164
-Warning (10230): Verilog HDL assignment warning at Polygon_List.sv(165): truncated value with size 97 to match size of target (49) File: C:/ECE241/Final Project/ece241-final_project/src/Polygon_List.sv Line: 165
-Warning (10230): Verilog HDL assignment warning at Polygon_List.sv(167): truncated value with size 97 to match size of target (49) File: C:/ECE241/Final Project/ece241-final_project/src/Polygon_List.sv Line: 167
-Warning (10230): Verilog HDL assignment warning at Polygon_List.sv(168): truncated value with size 97 to match size of target (49) File: C:/ECE241/Final Project/ece241-final_project/src/Polygon_List.sv Line: 168
-Warning (10230): Verilog HDL assignment warning at Polygon_List.sv(169): truncated value with size 97 to match size of target (49) File: C:/ECE241/Final Project/ece241-final_project/src/Polygon_List.sv Line: 169
-Info (12128): Elaborating entity "Pose_Tracker" for hierarchy "Pose_Tracker:PT" File: C:/ECE241/Final Project/ece241-final_project/src/renderer.sv Line: 137
-Info (12128): Elaborating entity "Keyboard_Intefracer" for hierarchy "Keyboard_Intefracer:KB_I" File: C:/ECE241/Final Project/ece241-final_project/src/renderer.sv Line: 154
+Warning (10034): Output port "HEX2" at renderer.sv(43) has no driver File: C:/ECE241/Final Project/ece241-final_project/src/renderer.sv Line: 43
+Warning (10034): Output port "HEX3" at renderer.sv(44) has no driver File: C:/ECE241/Final Project/ece241-final_project/src/renderer.sv Line: 44
+Warning (10034): Output port "HEX4" at renderer.sv(45) has no driver File: C:/ECE241/Final Project/ece241-final_project/src/renderer.sv Line: 45
+Warning (10034): Output port "HEX5" at renderer.sv(46) has no driver File: C:/ECE241/Final Project/ece241-final_project/src/renderer.sv Line: 46
+Info (12128): Elaborating entity "Polygon_List" for hierarchy "Polygon_List:LIST" File: C:/ECE241/Final Project/ece241-final_project/src/renderer.sv Line: 116
+Info (10008): Verilog HDL or VHDL information: EDA Netlist Writer cannot regroup multidimensional array "Poly1" into its bus
+Info (10008): Verilog HDL or VHDL information: EDA Netlist Writer cannot regroup multidimensional array "Poly2" into its bus
+Info (10008): Verilog HDL or VHDL information: EDA Netlist Writer cannot regroup multidimensional array "Poly3" into its bus
+Info (10008): Verilog HDL or VHDL information: EDA Netlist Writer cannot regroup multidimensional array "Poly4" into its bus
+Info (10008): Verilog HDL or VHDL information: EDA Netlist Writer cannot regroup multidimensional array "Poly5" into its bus
+Info (10008): Verilog HDL or VHDL information: EDA Netlist Writer cannot regroup multidimensional array "Poly6" into its bus
+Info (10008): Verilog HDL or VHDL information: EDA Netlist Writer cannot regroup multidimensional array "Poly7" into its bus
+Info (10008): Verilog HDL or VHDL information: EDA Netlist Writer cannot regroup multidimensional array "Poly8" into its bus
+Info (10008): Verilog HDL or VHDL information: EDA Netlist Writer cannot regroup multidimensional array "Poly9" into its bus
+Info (10008): Verilog HDL or VHDL information: EDA Netlist Writer cannot regroup multidimensional array "Poly10" into its bus
+Info (10008): Verilog HDL or VHDL information: EDA Netlist Writer cannot regroup multidimensional array "Poly11" into its bus
+Info (10008): Verilog HDL or VHDL information: EDA Netlist Writer cannot regroup multidimensional array "Poly12" into its bus
+Info (10008): Verilog HDL or VHDL information: EDA Netlist Writer cannot regroup multidimensional array "Poly1" into its bus
+Info (10008): Verilog HDL or VHDL information: EDA Netlist Writer cannot regroup multidimensional array "Poly2" into its bus
+Info (10008): Verilog HDL or VHDL information: EDA Netlist Writer cannot regroup multidimensional array "Poly3" into its bus
+Info (10008): Verilog HDL or VHDL information: EDA Netlist Writer cannot regroup multidimensional array "Poly4" into its bus
+Info (10008): Verilog HDL or VHDL information: EDA Netlist Writer cannot regroup multidimensional array "Poly5" into its bus
+Info (10008): Verilog HDL or VHDL information: EDA Netlist Writer cannot regroup multidimensional array "Poly6" into its bus
+Info (10008): Verilog HDL or VHDL information: EDA Netlist Writer cannot regroup multidimensional array "Poly7" into its bus
+Info (10008): Verilog HDL or VHDL information: EDA Netlist Writer cannot regroup multidimensional array "Poly8" into its bus
+Info (10008): Verilog HDL or VHDL information: EDA Netlist Writer cannot regroup multidimensional array "Poly9" into its bus
+Info (10008): Verilog HDL or VHDL information: EDA Netlist Writer cannot regroup multidimensional array "Poly10" into its bus
+Info (10008): Verilog HDL or VHDL information: EDA Netlist Writer cannot regroup multidimensional array "Poly11" into its bus
+Info (10008): Verilog HDL or VHDL information: EDA Netlist Writer cannot regroup multidimensional array "Poly12" into its bus
+Info (12128): Elaborating entity "Pose_Tracker" for hierarchy "Pose_Tracker:PT" File: C:/ECE241/Final Project/ece241-final_project/src/renderer.sv Line: 127
+Info (12128): Elaborating entity "fxp_mul" for hierarchy "Pose_Tracker:PT|fxp_mul:mult0" File: C:/ECE241/Final Project/ece241-final_project/src/pose_tracker.sv Line: 164
+Info (12128): Elaborating entity "fxp_zoom" for hierarchy "Pose_Tracker:PT|fxp_mul:mult0|fxp_zoom:res_zoom" File: C:/ECE241/Final Project/ece241-final_project/src/fixedpoint_lib.sv Line: 266
+Info (12128): Elaborating entity "Keyboard_Intefracer" for hierarchy "Keyboard_Intefracer:KB_I" File: C:/ECE241/Final Project/ece241-final_project/src/renderer.sv Line: 144
 Info (12128): Elaborating entity "PS2_Controller" for hierarchy "Keyboard_Intefracer:KB_I|PS2_Controller:PS2" File: C:/ECE241/Final Project/ece241-final_project/src/Keyboard_Interfacer.sv Line: 110
 Info (12128): Elaborating entity "Altera_UP_PS2_Data_In" for hierarchy "Keyboard_Intefracer:KB_I|PS2_Controller:PS2|Altera_UP_PS2_Data_In:PS2_Data_In" File: C:/ECE241/Final Project/ece241-final_project/src/PS2_Controller.sv Line: 246
 Info (12128): Elaborating entity "Altera_UP_PS2_Command_Out" for hierarchy "Keyboard_Intefracer:KB_I|PS2_Controller:PS2|Altera_UP_PS2_Command_Out:PS2_Command_Out" File: C:/ECE241/Final Project/ece241-final_project/src/PS2_Controller.sv Line: 266
-Info (12128): Elaborating entity "Hexadecimal_To_Seven_Segment" for hierarchy "Hexadecimal_To_Seven_Segment:Segment0" File: C:/ECE241/Final Project/ece241-final_project/src/renderer.sv Line: 164
+Info (12128): Elaborating entity "Hexadecimal_To_Seven_Segment" for hierarchy "Hexadecimal_To_Seven_Segment:hex0" File: C:/ECE241/Final Project/ece241-final_project/src/renderer.sv Line: 149
 Warning (12241): 1 hierarchies have connectivity warnings - see the Connectivity Checks report folder
 Warning (13024): Output pins are stuck at VCC or GND
-    Warning (13410): Pin "LEDR[0]" is stuck at GND File: C:/ECE241/Final Project/ece241-final_project/src/renderer.sv Line: 46
-    Warning (13410): Pin "LEDR[1]" is stuck at GND File: C:/ECE241/Final Project/ece241-final_project/src/renderer.sv Line: 46
-    Warning (13410): Pin "LEDR[2]" is stuck at GND File: C:/ECE241/Final Project/ece241-final_project/src/renderer.sv Line: 46
-    Warning (13410): Pin "LEDR[3]" is stuck at GND File: C:/ECE241/Final Project/ece241-final_project/src/renderer.sv Line: 46
-    Warning (13410): Pin "LEDR[4]" is stuck at GND File: C:/ECE241/Final Project/ece241-final_project/src/renderer.sv Line: 46
-    Warning (13410): Pin "LEDR[5]" is stuck at GND File: C:/ECE241/Final Project/ece241-final_project/src/renderer.sv Line: 46
-    Warning (13410): Pin "LEDR[6]" is stuck at GND File: C:/ECE241/Final Project/ece241-final_project/src/renderer.sv Line: 46
-    Warning (13410): Pin "LEDR[7]" is stuck at GND File: C:/ECE241/Final Project/ece241-final_project/src/renderer.sv Line: 46
-    Warning (13410): Pin "LEDR[8]" is stuck at GND File: C:/ECE241/Final Project/ece241-final_project/src/renderer.sv Line: 46
+    Warning (13410): Pin "HEX2[0]" is stuck at GND File: C:/ECE241/Final Project/ece241-final_project/src/renderer.sv Line: 43
+    Warning (13410): Pin "HEX2[1]" is stuck at GND File: C:/ECE241/Final Project/ece241-final_project/src/renderer.sv Line: 43
+    Warning (13410): Pin "HEX2[2]" is stuck at GND File: C:/ECE241/Final Project/ece241-final_project/src/renderer.sv Line: 43
+    Warning (13410): Pin "HEX2[3]" is stuck at GND File: C:/ECE241/Final Project/ece241-final_project/src/renderer.sv Line: 43
+    Warning (13410): Pin "HEX2[4]" is stuck at GND File: C:/ECE241/Final Project/ece241-final_project/src/renderer.sv Line: 43
+    Warning (13410): Pin "HEX2[5]" is stuck at GND File: C:/ECE241/Final Project/ece241-final_project/src/renderer.sv Line: 43
+    Warning (13410): Pin "HEX2[6]" is stuck at GND File: C:/ECE241/Final Project/ece241-final_project/src/renderer.sv Line: 43
+    Warning (13410): Pin "HEX3[0]" is stuck at GND File: C:/ECE241/Final Project/ece241-final_project/src/renderer.sv Line: 44
+    Warning (13410): Pin "HEX3[1]" is stuck at GND File: C:/ECE241/Final Project/ece241-final_project/src/renderer.sv Line: 44
+    Warning (13410): Pin "HEX3[2]" is stuck at GND File: C:/ECE241/Final Project/ece241-final_project/src/renderer.sv Line: 44
+    Warning (13410): Pin "HEX3[3]" is stuck at GND File: C:/ECE241/Final Project/ece241-final_project/src/renderer.sv Line: 44
+    Warning (13410): Pin "HEX3[4]" is stuck at GND File: C:/ECE241/Final Project/ece241-final_project/src/renderer.sv Line: 44
+    Warning (13410): Pin "HEX3[5]" is stuck at GND File: C:/ECE241/Final Project/ece241-final_project/src/renderer.sv Line: 44
+    Warning (13410): Pin "HEX3[6]" is stuck at GND File: C:/ECE241/Final Project/ece241-final_project/src/renderer.sv Line: 44
+    Warning (13410): Pin "HEX4[0]" is stuck at GND File: C:/ECE241/Final Project/ece241-final_project/src/renderer.sv Line: 45
+    Warning (13410): Pin "HEX4[1]" is stuck at GND File: C:/ECE241/Final Project/ece241-final_project/src/renderer.sv Line: 45
+    Warning (13410): Pin "HEX4[2]" is stuck at GND File: C:/ECE241/Final Project/ece241-final_project/src/renderer.sv Line: 45
+    Warning (13410): Pin "HEX4[3]" is stuck at GND File: C:/ECE241/Final Project/ece241-final_project/src/renderer.sv Line: 45
+    Warning (13410): Pin "HEX4[4]" is stuck at GND File: C:/ECE241/Final Project/ece241-final_project/src/renderer.sv Line: 45
+    Warning (13410): Pin "HEX4[5]" is stuck at GND File: C:/ECE241/Final Project/ece241-final_project/src/renderer.sv Line: 45
+    Warning (13410): Pin "HEX4[6]" is stuck at GND File: C:/ECE241/Final Project/ece241-final_project/src/renderer.sv Line: 45
+    Warning (13410): Pin "HEX5[0]" is stuck at GND File: C:/ECE241/Final Project/ece241-final_project/src/renderer.sv Line: 46
+    Warning (13410): Pin "HEX5[1]" is stuck at GND File: C:/ECE241/Final Project/ece241-final_project/src/renderer.sv Line: 46
+    Warning (13410): Pin "HEX5[2]" is stuck at GND File: C:/ECE241/Final Project/ece241-final_project/src/renderer.sv Line: 46
+    Warning (13410): Pin "HEX5[3]" is stuck at GND File: C:/ECE241/Final Project/ece241-final_project/src/renderer.sv Line: 46
+    Warning (13410): Pin "HEX5[4]" is stuck at GND File: C:/ECE241/Final Project/ece241-final_project/src/renderer.sv Line: 46
+    Warning (13410): Pin "HEX5[5]" is stuck at GND File: C:/ECE241/Final Project/ece241-final_project/src/renderer.sv Line: 46
+    Warning (13410): Pin "HEX5[6]" is stuck at GND File: C:/ECE241/Final Project/ece241-final_project/src/renderer.sv Line: 46
+    Warning (13410): Pin "LEDR[0]" is stuck at GND File: C:/ECE241/Final Project/ece241-final_project/src/renderer.sv Line: 47
 Info (286030): Timing-Driven Synthesis is running
-Info (17049): 7 registers lost all their fanouts during netlist optimizations.
+Info (17049): 8 registers lost all their fanouts during netlist optimizations.
 Info (144001): Generated suppressed messages file C:/ECE241/Final Project/ece241-final_project/renderer.map.smsg
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
-Warning (21074): Design contains 3 input pin(s) that do not drive logic
-    Warning (15610): No output dependent on input pin "KEY[2]" File: C:/ECE241/Final Project/ece241-final_project/src/renderer.sv Line: 33
-    Warning (15610): No output dependent on input pin "KEY[3]" File: C:/ECE241/Final Project/ece241-final_project/src/renderer.sv Line: 33
-    Warning (15610): No output dependent on input pin "SW[8]" File: C:/ECE241/Final Project/ece241-final_project/src/renderer.sv Line: 32
-Info (21057): Implemented 416 device resources after synthesis - the final resource count might be different
+Warning (21074): Design contains 4 input pin(s) that do not drive logic
+    Warning (15610): No output dependent on input pin "KEY[2]" File: C:/ECE241/Final Project/ece241-final_project/src/renderer.sv Line: 34
+    Warning (15610): No output dependent on input pin "KEY[3]" File: C:/ECE241/Final Project/ece241-final_project/src/renderer.sv Line: 34
+    Warning (15610): No output dependent on input pin "SW[8]" File: C:/ECE241/Final Project/ece241-final_project/src/renderer.sv Line: 33
+    Warning (15610): No output dependent on input pin "SW[9]" File: C:/ECE241/Final Project/ece241-final_project/src/renderer.sv Line: 33
+Info (21057): Implemented 319 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 15 input pins
     Info (21059): Implemented 52 output pins
     Info (21060): Implemented 2 bidirectional pins
-    Info (21061): Implemented 347 logic cells
-Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 53 warnings
-    Info: Peak virtual memory: 4883 megabytes
-    Info: Processing ended: Mon Nov 11 12:57:48 2024
-    Info: Elapsed time: 00:00:20
-    Info: Total CPU time (on all processors): 00:00:16
+    Info (21061): Implemented 250 logic cells
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 70 warnings
+    Info: Peak virtual memory: 4884 megabytes
+    Info: Processing ended: Sun Nov 17 13:02:15 2024
+    Info: Elapsed time: 00:00:15
+    Info: Total CPU time (on all processors): 00:00:13
 
 
 +------------------------------------------+

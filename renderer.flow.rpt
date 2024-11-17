@@ -1,5 +1,5 @@
 Flow report for renderer
-Mon Nov 11 12:59:13 2024
+Sun Nov 17 13:03:22 2024
 Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
 
 
@@ -40,15 +40,15 @@ refer to the applicable agreement for further details.
 +-------------------------------------------------------------------------------+
 ; Flow Summary                                                                  ;
 +---------------------------------+---------------------------------------------+
-; Flow Status                     ; Successful - Mon Nov 11 12:59:03 2024       ;
+; Flow Status                     ; Successful - Sun Nov 17 13:03:14 2024       ;
 ; Quartus Prime Version           ; 18.1.0 Build 625 09/12/2018 SJ Lite Edition ;
 ; Revision Name                   ; renderer                                    ;
 ; Top-level Entity Name           ; renderer                                    ;
 ; Family                          ; Cyclone V                                   ;
 ; Device                          ; 5CSEMA5F31C6                                ;
 ; Timing Models                   ; Final                                       ;
-; Logic utilization (in ALMs)     ; 160 / 32,070 ( < 1 % )                      ;
-; Total registers                 ; 205                                         ;
+; Logic utilization (in ALMs)     ; 122 / 32,070 ( < 1 % )                      ;
+; Total registers                 ; 167                                         ;
 ; Total pins                      ; 69 / 457 ( 15 % )                           ;
 ; Total virtual pins              ; 0                                           ;
 ; Total block memory bits         ; 0 / 4,065,280 ( 0 % )                       ;
@@ -67,7 +67,7 @@ refer to the applicable agreement for further details.
 +-------------------+---------------------+
 ; Option            ; Setting             ;
 +-------------------+---------------------+
-; Start date & time ; 11/11/2024 12:57:29 ;
+; Start date & time ; 11/17/2024 13:02:01 ;
 ; Main task         ; Compilation         ;
 ; Revision Name     ; renderer            ;
 +-------------------+---------------------+
@@ -78,7 +78,7 @@ refer to the applicable agreement for further details.
 +-------------------------------------+----------------------------------------+---------------+-------------+------------+
 ; Assignment Name                     ; Value                                  ; Default Value ; Entity Name ; Section Id ;
 +-------------------------------------+----------------------------------------+---------------+-------------+------------+
-; COMPILER_SIGNATURE_ID               ; 10995770589200.173134784910356         ; --            ; --          ; --         ;
+; COMPILER_SIGNATURE_ID               ; 10995770589200.173186652022224         ; --            ; --          ; --         ;
 ; MAX_CORE_JUNCTION_TEMP              ; 85                                     ; --            ; --          ; --         ;
 ; MIN_CORE_JUNCTION_TEMP              ; 0                                      ; --            ; --          ; --         ;
 ; PARTITION_COLOR                     ; -- (Not supported for targeted family) ; --            ; --          ; Top        ;
@@ -94,11 +94,11 @@ refer to the applicable agreement for further details.
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 ; Module Name          ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
-; Analysis & Synthesis ; 00:00:19     ; 1.0                     ; 4883 MB             ; 00:00:16                           ;
-; Fitter               ; 00:01:02     ; 1.1                     ; 7175 MB             ; 00:01:16                           ;
-; Assembler            ; 00:00:09     ; 1.0                     ; 4837 MB             ; 00:00:03                           ;
-; Timing Analyzer      ; 00:00:09     ; 1.4                     ; 5216 MB             ; 00:00:04                           ;
-; Total                ; 00:01:39     ; --                      ; --                  ; 00:01:39                           ;
+; Analysis & Synthesis ; 00:00:15     ; 1.0                     ; 4884 MB             ; 00:00:13                           ;
+; Fitter               ; 00:00:48     ; 1.1                     ; 7174 MB             ; 00:01:05                           ;
+; Assembler            ; 00:00:08     ; 1.0                     ; 4829 MB             ; 00:00:05                           ;
+; Timing Analyzer      ; 00:00:07     ; 1.4                     ; 5209 MB             ; 00:00:04                           ;
+; Total                ; 00:01:18     ; --                      ; --                  ; 00:01:27                           ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 
 

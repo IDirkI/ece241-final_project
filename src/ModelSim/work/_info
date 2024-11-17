@@ -10,7 +10,7 @@ cModel Technology
 Z0 dC:/ECE241/Lab/lab5/part3/modelSim
 vAltera_UP_PS2_Command_Out
 Z1 DXx6 sv_std 3 std 0 22 AD7iAPLo6nTIKk<N0eo=D3
-Z2 !s110 1731611388
+Z2 !s110 1731870266
 !i10b 1
 !s100 TEU<2>ORVzbJha9SUS76W2
 IK8[==Si<@Z986S`Wb_NNo2
@@ -26,9 +26,9 @@ Z7 OV;L;10.5b;63
 r1
 !s85 0
 31
-Z8 !s108 1731611388.000000
-Z9 !s107 ../top.sv|../renderer.sv|../fixedpoint_lib.sv|../Pose_Tracker.sv|../Polygon_List.sv|../PS2_Controller.sv|../LinAlg.sv|../Keyboard_Interfacer.sv|../Hexadecimal_To_Seven_Segment.sv|../Altera_UP_PS2_Data_In.sv|../Altera_UP_PS2_Command_Out.sv|
-Z10 !s90 -reportprogress|300|../Altera_UP_PS2_Command_Out.sv|../Altera_UP_PS2_Data_In.sv|../Hexadecimal_To_Seven_Segment.sv|../Keyboard_Interfacer.sv|../LinAlg.sv|../PS2_Controller.sv|../Polygon_List.sv|../Pose_Tracker.sv|../fixedpoint_lib.sv|../renderer.sv|../top.sv|
+Z8 !s108 1731870266.000000
+Z9 !s107 ../top.sv|../renderer.sv|../fixedpoint_lib.sv|../Transformations.sv|../Projector.sv|../Pose_Tracker.sv|../Polygon_List.sv|../PS2_Controller.sv|../LinAlg.sv|../Keyboard_Interfacer.sv|../Hexadecimal_To_Seven_Segment.sv|../Altera_UP_PS2_Data_In.sv|../Altera_UP_PS2_Command_Out.sv|
+Z10 !s90 -reportprogress|300|../Altera_UP_PS2_Command_Out.sv|../Altera_UP_PS2_Data_In.sv|../Hexadecimal_To_Seven_Segment.sv|../Keyboard_Interfacer.sv|../LinAlg.sv|../PS2_Controller.sv|../Polygon_List.sv|../Pose_Tracker.sv|../Projector.sv|../Transformations.sv|../fixedpoint_lib.sv|../renderer.sv|../top.sv|
 !i113 1
 Z11 tCvgOpt 0
 n@altera_@u@p_@p@s2_@command_@out
@@ -86,7 +86,7 @@ R3
 Z19 !s105 LinAlg_sv_unit
 S1
 R4
-Z20 w1731437881
+Z20 w1731863988
 Z21 8../LinAlg.sv
 Z22 F../LinAlg.sv
 L0 6
@@ -626,8 +626,8 @@ vmatrix_mul_4x4on4x1
 R1
 R2
 !i10b 1
-!s100 `4oPc=[hdCPSTY97XF0DY3
-IJnL9^VY2EgN=jci:MVZ;03
+!s100 =zP3dX43CN3CT]^4QcZ:S2
+IT?Fne4aeJ3m@Eo8A<`Qfl3
 R3
 R19
 S1
@@ -709,13 +709,13 @@ vPolygon_List
 R1
 R2
 !i10b 1
-!s100 ^Z2eB=6[n?]GUA83E5M]H3
-Ieom@<V]462AYM?giDOo2=2
+!s100 3ZoW[0b85NlC=627EM@EH1
+IA;VXjVHRU>SCJP:Q54ZXK1
 R3
 !s105 Polygon_List_sv_unit
 S1
 R4
-w1731538959
+w1731618063
 8../Polygon_List.sv
 F../Polygon_List.sv
 L0 1
@@ -731,15 +731,15 @@ R11
 n@polygon_@list
 vPose_Tracker
 R1
-Z35 !s110 1731611481
+R2
 !i10b 1
-!s100 4?zIQU8gZlW8H`z1FgQg@2
-II4VjjHU@eHPd:L7AF<FNn3
+!s100 Jc;nBmb==aFR6?Ij8e=1D1
+IMODR>>@8`?^Fi7HQABG0b3
 R3
 !s105 Pose_Tracker_sv_unit
 S1
 R4
-w1731602872
+w1731865403
 8../Pose_Tracker.sv
 F../Pose_Tracker.sv
 L0 1
@@ -747,15 +747,15 @@ R7
 r1
 !s85 0
 31
-Z36 !s108 1731611481.000000
-!s107 ../Pose_Tracker.sv|
-!s90 -reportprogress|300|../Pose_Tracker.sv|
+R8
+R9
+R10
 !i113 1
 R11
 n@pose_@tracker
 vPose_Tracker_testbench
 R1
-R35
+!s110 1731614444
 !i10b 1
 !s100 ldU4d=jW<S8nC3R[NY;MH0
 I==[D7`?Y?=nbBPW]iA00G2
@@ -771,12 +771,59 @@ R7
 r1
 !s85 0
 31
-R36
+!s108 1731614444.000000
 !s107 Pose_Tracker_testbench.sv|
 !s90 -reportprogress|300|Pose_Tracker_testbench.sv|
 !i113 1
 R11
 n@pose_@tracker_testbench
+vprojection
+R1
+R2
+!i10b 1
+!s100 zU=g]URLPa3Rd5Q<gRZ_<3
+IS5hZoFEUd0BC13_Jz<e7:3
+R3
+Z35 !s105 Transformations_sv_unit
+S1
+R4
+Z36 w1731869090
+Z37 8../Transformations.sv
+Z38 F../Transformations.sv
+L0 1
+R7
+r1
+!s85 0
+31
+R8
+R9
+R10
+!i113 1
+R11
+vProjector
+R1
+R2
+!i10b 1
+!s100 _Ykh8a10ci=2>Bnid;G710
+I`LBmIKbZf4U;fD:Mh>`DR1
+R3
+!s105 Projector_sv_unit
+S1
+R4
+w1731864066
+8../Projector.sv
+F../Projector.sv
+L0 1
+R7
+r1
+!s85 0
+31
+R8
+R9
+R10
+!i113 1
+R11
+n@projector
 vPS2_Controller
 R1
 R2
@@ -805,13 +852,13 @@ vrenderer
 R1
 R2
 !i10b 1
-!s100 4kZFZ;ZAHKEV5NY1_m7EP0
-IE=3nzAS?ink]U^8c@VOCK2
+!s100 :l?Yje3T?2BK`kHW8S>113
+IRgFedLJ6TjcX[ZQWE[>Rb3
 R3
 !s105 renderer_sv_unit
 S1
 R4
-w1731601159
+w1731866901
 8../renderer.sv
 F../renderer.sv
 L0 2
@@ -846,25 +893,25 @@ R18
 R11
 vtestbench
 R1
-!s110 1731611381
+R2
 !i10b 1
-!s100 2IeFA2>NUeW^2;=G7VNPh3
-I;UX6gHn8Hcg8Zc2ZT`58m3
+!s100 B]LDc4PTj7RZdPmi6UGkk0
+IQeJN`gmNl`c;_0cfaOQG71
 R3
-!s105 LinAlg_testbench_sv_unit
+!s105 projection_testbench_sv_unit
 S1
 R4
-w1731437744
-8LinAlg_testbench.sv
-FLinAlg_testbench.sv
+w1731870262
+8projection_testbench.sv
+Fprojection_testbench.sv
 L0 3
 R7
 r1
 !s85 0
 31
-!s108 1731611381.000000
-!s107 LinAlg_testbench.sv|
-!s90 -reportprogress|300|LinAlg_testbench.sv|
+R8
+!s107 projection_testbench.sv|
+!s90 -reportprogress|300|projection_testbench.sv|
 !i113 1
 R11
 vtop
@@ -881,6 +928,29 @@ w1731022692
 8../top.sv
 F../top.sv
 L0 4
+R7
+r1
+!s85 0
+31
+R8
+R9
+R10
+!i113 1
+R11
+vtransformer
+R1
+R2
+!i10b 1
+!s100 l==?P5A]2c?eMK_T5oSGB1
+IScS4a3TW`]441SfTB]7Po2
+R3
+R35
+S1
+R4
+R36
+R37
+R38
+L0 191
 R7
 r1
 !s85 0

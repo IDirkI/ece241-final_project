@@ -2,10 +2,10 @@
 
 module testbench ( );
 
-	parameter 	WII = 8,
+	parameter 	WII = 9,
 				WIF = 16;
 				
-	parameter	WOI = 8,
+	parameter	WOI = 9,
 				WOF = 16;
 	
 	parameter	SF = 2.0**WOF;

@@ -1,0 +1,149 @@
+module projection # (
+	parameter	WII = 9,
+					WIF = 16,
+					WOI = 9,
+					WOF = 16;
+	) (
+		// Inputs
+		position,
+		orientation,
+		Polygon_in,
+		
+		// Outputs
+		Polygon_out
+	);
+/*****************************************************************************
+ *                           Parameter Declarations                          *
+ *****************************************************************************/
+ // Scaling factor
+ parameter	SF = 2.0**WOF;
+ 
+ // Projection Constants,	
+ parameter	r = 	25'd4*SF;	// Right side of camera
+				l = 	25'd4*SF;	// Left side of camera
+				t =	25'd4*SF;	// Top of the camera
+				b = 	25'd4*SF;	// Bottom of the camera
+				n = 	25'd4*SF,	// Near screen from the eye
+				f = 	25'd12*SF;	// Far screen from the eye
+
+/*****************************************************************************
+ *                             Port Declarations                             *
+ ********************************************** *******************************/
+ input wire signed 	[2:0][WOI+WOF-1:0] position;
+ input wire signed 	[2:0][WOI+WOF-1:0] orientation;
+ input wire signed 	[2:0][3:0][WII+WIF-1:0] Polygon_in;
+ 
+ output reg signed [2:0][3:0][WII+WIF-1:0] Polygon_out;
+ 
+/*****************************************************************************
+ *                 Internal Wires and Registers Declarations                 *
+ *****************************************************************************/
+ logic	signed 	[WII+WIF-1:0] h00;
+ logic	signed 	[WII+WIF-1:0] h11;
+ logic	signed 	[WII+WIF-1:0] h22;
+ logic	signed 	[WII+WIF-1:0] h23;
+ 
+ logic								  div_of0;
+ logic								  div_of1;
+ logic								  div_of2;
+ logic								  div_of3;
+ 
+ logic								  add_of0;
+ logic								  sub_of0;
+ logic								  mult_of0;
+ logic								  mult_of1;
+ logic								  mult_of2;
+ 
+ logic	signed	[WII+WIF-1:0] f_pls_n;		// f+n
+ logic	signed	[WII+WIF-1:0] f_min_n;		// f-n
+  logic	signed	[WII+WIF-1:0] neg_f_pls_n;	// -(f+n)	
+ logic	signed	[WII+WIF-1:0] fn;		// f*n
+ logic	signed	[WII+WIF-1:0] neg2_fn;		//	-2(f*n)
+ 
+ 
+ 
+ reg signed [3:0][3:0][WII+WIF-1:0] Proj;	// 4x4 projection matrix
+ 
+/*****************************************************************************
+ *                         Finite State Machine(s)                           *
+ *****************************************************************************/
+
+/*****************************************************************************
+ *                             Sequential Logic                              *
+ *****************************************************************************/
+ always @ (position, orientation) begin;
+	H[0][0] <= h00;
+ end
+ 
+/*****************************************************************************
+ *                            Combinational Logic                            *
+ *****************************************************************************/
+ 
+/*****************************************************************************
+ *                              Internal Modules                             *
+ *****************************************************************************/
+ // n/r
+ fxp_div # (
+	.WIIA(WII), .WIFA(WIF),
+ 	.WIIB(WII), .WIFB(WIF),
+	.WOI(WOI),	.WOF(WOF),
+	.ROUND(0)) div0 (.dividend(n), .divisor(r), .out(h00), .overflow(div_of0));
+	
+ // n/t
+ fxp_div # (
+	.WIIA(WII), .WIFA(WIF),
+ 	.WIIB(WII), .WIFB(WIF),
+	.WOI(WOI),	.WOF(WOF),
+	.ROUND(0)) div2 (.dividend(n), .divisor(t), .out(h11), .overflow(div_of1));
+	
+ // f + n
+ fxp_add # (
+	.WIIA(WII), .WIFA(WIF),
+ 	.WIIB(WII), .WIFB(WIF),
+	.WOI(WOI),	.WOF(WOF),
+	.ROUND(0)) add0 (.ina(f), .inb(n), .out(f_pls_n), .overflow(add_of0));
+
+// f - n
+ fxp_sub # (
+	.WIIA(WII), .WIFA(WIF),
+ 	.WIIB(WII), .WIFB(WIF),
+	.WOI(WOI),	.WOF(WOF),
+	.ROUND(0)) sub0 (.ina(f), .inb(n), .sub(1), .out(f_min_n), .overflow(sub_of0));
+	
+ // f*n
+ fxp_mult # (
+	.WIIA(WII), .WIFA(WIF),
+ 	.WIIB(WII), .WIFB(WIF),
+	.WOI(WOI),	.WOF(WOF),
+	.ROUND(0)) mult0 (.ina(f), .inb(n), .out(fn), .overflow(mult_of0));
+	
+ // -(f+n)
+ fxp_mult # (
+	.WIIA(WII), .WIFA(WIF),
+ 	.WIIB(WII), .WIFB(WIF),
+	.WOI(WOI),	.WOF(WOF)1
+	.ROUND(0)) mult1 (.ina(f_pls_n), .inb(25'b1_11111111_0000000000000000), .out(neg_f_pls_n), .overflow(mult_of1));
+	
+ // -2fn
+ fxp_mult # (
+	.WIIA(WII), .WIFA(WIF),
+ 	.WIIB(WII), .WIFB(WIF),
+	.WOI(WOI),	.WOF(WOF),
+	.ROUND(0)) mult1 (.ina(fn), .inb(25'b1_11111110_0000000000000000), .out(neg2_fn), .overflow(mult_of2));
+
+endmodule
+
+/*
+ *
+ * Create Homogeneous Transformation Matrix 
+ *
+ *
+ */
+module transformer # (
+		parameter 	WII = 9,
+						WIF = 16,
+						WOI = 9,
+						WOF = 16;
+	) (
+		
+	);

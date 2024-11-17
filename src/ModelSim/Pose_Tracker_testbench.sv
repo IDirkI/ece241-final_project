@@ -1,6 +1,6 @@
 `timescale 1ns / 1ps
 
-module Pose_Tracker_testbench ( );
+module testbench ( );
 
 	parameter 	WOI = 9,
 				WOF = 16;
@@ -37,6 +37,9 @@ module Pose_Tracker_testbench ( );
 		#10 keycode <= 8'h1C; // Press 'A'
 		#30 keycode <= 8'h00;
 		#30 keycode <= 8'h23; // Press 'D'
+	end // initial
+	
+	initial begin
 	end // initial
 	Pose_Tracker U1 (CLOCK_50, reset, keycode, position, orientation);
 

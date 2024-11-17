@@ -71,18 +71,18 @@ parameter 	SF   = 2.0**WOF;
   *			{Poly1, Poly2, ...} ---> 4800 bits -> 4.8 kB
   */
  
-	output reg	[2:0][3:0][WOI+WOF-1:0] Poly1;
-	output reg	[2:0][3:0][WOI+WOF-1:0] Poly2;
-	output reg	[2:0][3:0][WOI+WOF-1:0] Poly3;
-	output reg	[2:0][3:0][WOI+WOF-1:0] Poly4;
-	output reg	[2:0][3:0][WOI+WOF-1:0] Poly5;
-	output reg	[2:0][3:0][WOI+WOF-1:0] Poly6;
-	output reg	[2:0][3:0][WOI+WOF-1:0] Poly7;
-	output reg	[2:0][3:0][WOI+WOF-1:0] Poly8;
-	output reg	[2:0][3:0][WOI+WOF-1:0] Poly9;
-	output reg	[2:0][3:0][WOI+WOF-1:0] Poly10;
-	output reg	[2:0][3:0][WOI+WOF-1:0] Poly11;
-	output reg	[2:0][3:0][WOI+WOF-1:0] Poly12;
+	output reg	signed [2:0][3:0][WOI+WOF-1:0] Poly1;
+	output reg	signed [2:0][3:0][WOI+WOF-1:0] Poly2;
+	output reg	signed [2:0][3:0][WOI+WOF-1:0] Poly3;
+	output reg	signed [2:0][3:0][WOI+WOF-1:0] Poly4;
+	output reg	signed [2:0][3:0][WOI+WOF-1:0] Poly5;
+	output reg	signed [2:0][3:0][WOI+WOF-1:0] Poly6;
+	output reg	signed [2:0][3:0][WOI+WOF-1:0] Poly7;
+	output reg	signed [2:0][3:0][WOI+WOF-1:0] Poly8;
+	output reg	signed [2:0][3:0][WOI+WOF-1:0] Poly9;
+	output reg	signed [2:0][3:0][WOI+WOF-1:0] Poly10;
+	output reg	signed [2:0][3:0][WOI+WOF-1:0] Poly11;
+	output reg	signed [2:0][3:0][WOI+WOF-1:0] Poly12;
 
 
 	

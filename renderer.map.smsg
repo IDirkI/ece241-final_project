@@ -1,1 +1,6 @@
-Warning (10268): Verilog HDL information at pose_tracker.sv(53): always construct contains both blocking and non-blocking assignments File: C:/ECE241/Final Project/ece241-final_project/src/pose_tracker.sv Line: 53
+Info (10281): Verilog HDL Declaration information at renderer.sv(41): object "HEX0" differs only in case from object "hex0" in the same scope File: C:/ECE241/Final Project/ece241-final_project/src/renderer.sv Line: 41
+Info (10281): Verilog HDL Declaration information at renderer.sv(42): object "HEX1" differs only in case from object "hex1" in the same scope File: C:/ECE241/Final Project/ece241-final_project/src/renderer.sv Line: 42
+Warning (10268): Verilog HDL information at pose_tracker.sv(98): always construct contains both blocking and non-blocking assignments File: C:/ECE241/Final Project/ece241-final_project/src/pose_tracker.sv Line: 98
+Warning (10268): Verilog HDL information at fixedpoint_lib.sv(527): always construct contains both blocking and non-blocking assignments File: C:/ECE241/Final Project/ece241-final_project/src/fixedpoint_lib.sv Line: 527
+Warning (10268): Verilog HDL information at fixedpoint_lib.sv(689): always construct contains both blocking and non-blocking assignments File: C:/ECE241/Final Project/ece241-final_project/src/fixedpoint_lib.sv Line: 689
+Info (10281): Verilog HDL Declaration information at fixedpoint_lib.sv(956): object "ROUND" differs only in case from object "round" in the same scope File: C:/ECE241/Final Project/ece241-final_project/src/fixedpoint_lib.sv Line: 956

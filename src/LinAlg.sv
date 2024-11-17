@@ -165,11 +165,11 @@ module matrix_mul_4x4on4x1 # (
  *****************************************************************************/
  
  // Inputs
-	input wire	signed	[3:0][3:0][WII+WIF-1:0] 	H; // Homogeneous transformation matrix 
-	input wire	signed	[3:0][WII+WIF-1:0] 			p; // Point
+	input wire signed		[3:0][3:0][WII+WIF-1:0] 	H;  // Homogeneous transformation matrix 
+	input wire signed		[3:0][WII+WIF-1:0] 			p;  // Point
 	
  // Outputs
-	output logic 	signed	[3:0][WOI+WOF-1:0] Pp;				// Transformed point p' = H*p
+	output logic signed	[3:0][WOI+WOF-1:0] 			Pp; // Transformed point p' = H*p
 	
 /*****************************************************************************
  *                 Internal Wires and Registers Declarations                 *
@@ -224,12 +224,16 @@ module matrix_mul_4x4on4x1 # (
 	
 	logic 					sum_of00;
 	logic 				 	sum_of10;
+	logic						sum_of20;
 	logic						sum_of01;
 	logic 	 				sum_of11;
+	logic						sum_of21;
 	logic 					sum_of02;
 	logic  					sum_of12;
+	logic						sum_of22;
 	logic 					sum_of03;
 	logic 				 	sum_of13;
+	logic						sum_of23;
 
 	
 /*****************************************************************************
@@ -239,14 +243,6 @@ module matrix_mul_4x4on4x1 # (
 /*****************************************************************************
  *                             Sequential Logic                              *
  *****************************************************************************/
- /*
- always @ (*) begin
-	Pp[0] = H[0][0]*p[0] + H[1][0]*p[1] + H[2][0]*p[2] + H[3][0]*p[3];
-	Pp[1] = H[0][1]*p[0] + H[1][1]*p[1] + H[2][1]*p[2] + H[3][1]*p[3];
-	Pp[2] = H[0][2]*p[0] + H[1][2]*p[1] + H[2][2]*p[2] + H[3][2]*p[3];
-	Pp[3] = H[0][3]*p[0] + H[1][3]*p[1] + H[2][3]*p[2] + H[3][3]*p[3];
- end
- */
  
 /*****************************************************************************
  *                            Combinational Logic                            *

@@ -91,6 +91,18 @@ assign send_command 	= ~KEY[1];
 assign input_command = SW[7:0];
 
 assign LEDR[9] = reset; // Visual Reset
+
+// ========== MS2 PRESENTATION ==============
+assign LEDR[8:0] = pos[0][21:13];
+
+// ==========================================
+
+
+assign HEX2 = 7'b1111111;
+assign HEX3 = 7'b1111111;
+assign HEX4 = 7'b1111111;
+assign HEX5 = 7'b1111111;
+
 /*****************************************************************************
  *                              Internal Modules                             *
  *****************************************************************************/
@@ -141,6 +153,18 @@ assign LEDR[9] = reset; // Visual Reset
 		.error_communication_timed_out (error_communication),
 		.keycode				(keycode)
 	);
+	
+	// =========== MS2 Presentation ==========
+	Hexadecimal_To_Seven_Segment hex0 (
+		.hex_number(pos[0][19:16]),
+		.seven_seg_display(HEX0)
+	);
+	
+	Hexadecimal_To_Seven_Segment hex1 (	
+		.hex_number(pos[0][23:20]),
+		.seven_seg_display(HEX1)
+	);
+	// =======================================
 	
 
 endmodule

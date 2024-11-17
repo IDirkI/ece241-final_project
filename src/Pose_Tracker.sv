@@ -1,15 +1,17 @@
 module Pose_Tracker # (
-		parameter 	WOI = 9,
+		parameter 	WII = 9,
+						WIF = 16,
+					   WOI = 9,
 						WOF = 16
 	) (
-	// Inputs
-	CLOCK_50,
-	reset,
-	keycode,
-	
-	// Outputs
-	position,
-	orientation
+		// Inputs
+		CLOCK_50,
+		reset,
+		keycode,
+		
+		// Outputs
+		position,
+		orientation
 	);
 	
 /*****************************************************************************
@@ -24,8 +26,8 @@ module Pose_Tracker # (
 																 // Must increment ORI by 0.0001 or closeset equivelent
  
  // Update Constants
- parameter  TIMING_CONST 	= 25'd1;
- parameter  POS_INC_RATE	= 25'd1,									  // INC RATE	:	+ 1
+ parameter  TIMING_CONST 	= 25'd10_000_000;	// Normally 25'd10_000_000
+ parameter  POS_INC_RATE	= 25'b0_00000000_0100000000000000, // INC RATE	:	+ 0.25
 				ORI_INC_RATE	= 25'b0_00000000_0000000000000111; // INC RATE	:	+ 0.0001068115234375 ~ 0.0001
  
  
@@ -44,7 +46,7 @@ module Pose_Tracker # (
 				LEFT	= 8'h6B, // -γ
 				IN		= 8'h73,	// -α
 				OUT	= 8'h70;	// +α
- /*****************************************************************************
+/*****************************************************************************
  *                             Port Declarations                             *
  *****************************************************************************/
  
@@ -67,15 +69,21 @@ module Pose_Tracker # (
  *
  */
 													
- output reg		[2:0][WOI+WOF-1:0]		position; 		// 	-> <x, y, z>	3x25 -> 75 bits   
-																		//													
-																		//													
- output reg		[2:0][WOI+WOF-1:0]		orientation;	// 	-> <α, β, γ>	3x25 -> 75 bits
+ output reg	signed [2:0][WOI+WOF-1:0]		position; 		// 	-> <x, y, z>	3x25 -> 75 bits   
+																		   //													
+																		   //													
+ output reg	signed [2:0][WOI+WOF-1:0]		orientation;	// 	-> <α, β, γ>	3x25 -> 75 bits
  
 /*****************************************************************************
  *                 Internal Wires and Registers Declarations                 *
  *****************************************************************************/
- reg	[25:0]	kbCount;
+ // Wire
+ wire	signed				mult_of;
+ // Register
+ reg				[25:0]	kbCount;
+ 
+ // Logic
+ logic signed 	[25:0]	PIx2;
  
 /*****************************************************************************
  *                         Finite State Machine(s)                           *
@@ -107,12 +115,12 @@ module Pose_Tracker # (
 				
 				case	(keycode)
 					// Position
-					W		:	position[2] 	= 	position[2] - POS_INC_RATE*SF; // -z
-					A		:	position[0]		= 	position[0] - POS_INC_RATE*SF; // -x
-					S		:	position[2]		= 	position[2] + POS_INC_RATE*SF; // +z
-					D		:	position[0]		= 	position[0] + POS_INC_RATE*SF; // +x
-					SHIFT	:	position[1]		= 	position[1] - POS_INC_RATE*SF; // -y
-					SPACE	:	position[1]		= 	position[1] + POS_INC_RATE*SF; // +y
+					W		:	position[2] 	= 	position[2] - POS_INC_RATE; // -z
+					A		:	position[0]		= 	position[0] - POS_INC_RATE; // -x
+					S		:	position[2]		= 	position[2] + POS_INC_RATE; // +z
+					D		:	position[0]		= 	position[0] + POS_INC_RATE; // +x
+					SHIFT	:	position[1]		= 	position[1] - POS_INC_RATE; // -y
+					SPACE	:	position[1]		= 	position[1] + POS_INC_RATE; // +y
 					
 					// Orientation
 					UP		:	orientation[1]	=	orientation[1] - ORI_INC_RATE;	
@@ -123,25 +131,24 @@ module Pose_Tracker # (
 					OUT	:	orientation[0]	=	orientation[0]	+ ORI_INC_RATE;
 				endcase
 			end
+			
+			/*
+			 *		Orientation Wrapper
+			 */
+			
+			if(orientation[0][23:0] >= PIx2) begin	// Dont compare the sign bit
+				orientation[0] = 25'b0;
+			end
+			
+			if(orientation[1][23:0] >= PIx2) begin
+				orientation[1] = 25'b0;
+			end
+			
+			if(orientation[2][23:0] >= PIx2) begin
+				orientation[2] = 25'b0;
+			end
 		 end
 	end
-	
- /*
-  *		Orientation Wrapper
-  */
-  always @ (orientation) begin
-		if(orientation[0] >= 2.0*PI) begin
-			orientation[0] <= 25'b0;
-		end
-		
-		if(orientation[1] >= 2.0*PI) begin
-			orientation[1] <= 25'b0;
-		end
-		
-		if(orientation[2] >= 2.0*PI) begin
-			orientation[2] <= 25'b0;
-		end
-  end
  
 /*****************************************************************************
  *                            Combinational Logic                            *
@@ -150,5 +157,10 @@ module Pose_Tracker # (
 /*****************************************************************************
  *                              Internal Modules                             *
  *****************************************************************************/
+ fxp_mul # (
+	.WIIA(WII), .WIFA(WIF),
+ 	.WIIB(WII), .WIFB(WIF),
+	.WOI(WOI),	.WOF(WOF),
+	.ROUND(0)) mult0 (.ina(25'b0_00000010_0000000000000000), .inb(PI), .out(PIx2), .overflow(mult_of));
 
 endmodule

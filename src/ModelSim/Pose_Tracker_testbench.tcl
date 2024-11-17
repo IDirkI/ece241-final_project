@@ -5,7 +5,7 @@ quit -sim
 vlib work;
 
 # compile the Verilog source code in the parent folder
-vlog ../Pose_Tracker.sv
+vlog ../*.sv
 # compile the Verilog code of the testbench
 vlog Pose_Tracker_testbench.sv
 # start the Simulator, including some libraries that may be needed
